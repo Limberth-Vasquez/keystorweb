@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Plantilla App</title>
+    <title>Keystor - Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,7 +11,8 @@
     <meta name="author" content="CodedThemes"/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/ic_launcher-web.png" type="image/x-icon">
+    <!--<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">-->
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -41,10 +42,11 @@
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
                 <a href="index.html" class="b-brand">
-                    <div class="b-bg">
+                    <!-- <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
-                    </div>
-                    <span class="b-title">My App</span>
+                    </div> -->
+                    <label><img src="assets/images/keystore_logo.png" class="image-responsive" width="125px" height="50px"></label>
+                    <!-- <span class="b-title">Keystor</span> -->
                     
                 </a>
                 <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
@@ -52,7 +54,7 @@
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
                     <li class="nav-item active pcoded-menu-caption mb-2">
-                        <label style="font-size: 12px;"><img src="assets/images/user/avatar-6.jpg" class="circle mr-3 image-responsive" width="55px" height="55px">Oscar Morales</label>
+                        <label style="font-size: 12px;"><img src="assets/images/ic_launcher-web.png" class="circle mr-3 image-responsive" width="55px" height="55px">Limberth Vasquez</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
                         <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
@@ -60,32 +62,38 @@
                     <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
                         
                     </li>
-                    <li class="nav-item pcoded-menu-caption">
+                    <!-- <li class="nav-item pcoded-menu-caption">
                         <label>Lista 1</label>
-                    </li>
+                    </li> -->
                     <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" class="nav-item pcoded-hasmenu">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Elemento 2</span></a>
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Security</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a></li>
                             <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
                         </ul>
                     </li>
-                    <li data-username="Table bootstrap datatable footable" class="nav-item">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Elemento 3</span></a>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item pcoded-hasmenu">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Users</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="" class="" target="_blank">Adveriser Users</a></li>
+                            <li class=""><a href="" class="" target="_blank">Client Users</a></li>
+                            <li class=""><a href="" class="" target="_blank">Event Users</a></li>
+                            <li class=""><a href="" class="" target="_blank">Warehouse Users</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item pcoded-menu-caption">
+                    <!-- <li class="nav-item pcoded-menu-caption">
                         <label>Lista 2</label>
-                    </li>
-                    <li data-username="Charts Morris" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Elemento 4</span></a></li>
-                    <li data-username="Maps Google" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Elemento 5</span></a></li>
-                    <li class="nav-item pcoded-menu-caption">
+                    </li> -->
+                    <li data-username="Charts Morris" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Contracts</span></a></li>
+                    <li data-username="Maps Google" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">WareHouses</span></a></li>
+                    <!-- <li class="nav-item pcoded-menu-caption">
                         <label>Lista 3</label>
-                    </li>
+                    </li> -->
                     <li data-username="Table bootstrap datatable footable" class="nav-item">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Elemento 3</span></a>
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Roles</span></a>
                     </li>
-                    <li data-username="Sample Page" class="nav-item"><a href="#" class="nav-link"><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Elemento 7</span></a></li>
-                    <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled menu</span></a></li>
+                    <li data-username="Sample Page" class="nav-item"><a href="#" class="nav-link"><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Type Services</span></a></li>
+                    <!-- <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled menu</span></a></li> -->
                 </ul>
             </div>
         </div>
@@ -97,10 +105,12 @@
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
             <a href="index.html" class="b-brand">
-                   <div class="b-bg">
+                   <!-- <div class="b-bg">
                        <i class="feather icon-trending-up"></i>
-                   </div>
-                   <span class="b-title">My App</span>
+                   </div> -->
+                   <label><img src="assets/images/keystore_logo.png" class="image-responsive" width="125px" height="50px"></label>
+
+                   <!-- <span class="b-title">Keystor</span> -->
                </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="javascript:">
@@ -109,14 +119,14 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize-2"></i></a></li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Opciones</a>
                     <ul class="dropdown-menu border">
                         <li><a class="dropdown-item" href="javascript:">Accion 1</a></li>
                         <li><a class="dropdown-item" href="javascript:">Accion 2</a></li>
                         <li><a class="dropdown-item" href="javascript:">Accion 3</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <div class="main-search">
                         <div class="input-group">
@@ -149,9 +159,9 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="assets/images/ic_launcher-web.png" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
+                                            <p><strong>LIMBERTH VASQUEZ</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>Nueva elemento agregado</p>
                                         </div>
                                     </div>
@@ -191,8 +201,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification border-bottom border-left border-right shadow">
                             <div class="pro-head">
-                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
+                                <img src="assets/images/ic_launcher-web.png" class="img-radius" alt="User-Profile-Image">
+                                <span>LIMBERTH VASQUEZ</span>
                                 <a href="" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
@@ -229,7 +239,7 @@
                                     <div class="card Monthly-sales theme-bg3 border-0">
                                         <div class="card-block">
                                             <div class="row d-flex align-items-center px-4">
-                                                <h5 class="text-white">Vehiculos registrados</h5>
+                                                <h5 class="text-white">WareHouses registers</h5>
                                                 <h1 class="text-white ml-auto">22</h1>
                                             </div>
                                         </div>
@@ -239,7 +249,7 @@
                                     <div class="card Monthly-sales theme-bg4 border-0">
                                         <div class="card-block">
                                             <div class="row d-flex align-items-center px-4">
-                                                <h5 class="text-white">Rutas registradas</h5>
+                                                <h5 class="text-white">Clients registers</h5>
                                                 <h1 class="text-white ml-auto">15</h1>
                                             </div>
                                         </div>
@@ -249,7 +259,7 @@
                                     <div class="card Monthly-sales theme-bg5 border-0">
                                         <div class="card-block">
                                             <div class="row d-flex align-items-center px-4">
-                                                <h5 class="text-white">Choferes</h5>
+                                                <h5 class="text-white">Owners registers</h5>
                                                 <h1 class="text-white ml-auto">14</h1>
                                             </div>
                                         </div>
@@ -393,7 +403,7 @@
                                 </div>
                                 <!-- [ statistics year chart ] end -->
                                 <!--[social-media section] start-->
-                                <div class="col-md-12 col-xl-4">
+                                <!-- <div class="col-md-12 col-xl-4">
                                     <div class="card card-social">
                                         <div class="card-block border-bottom">
                                             <div class="row align-items-center justify-content-center">
@@ -485,7 +495,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!--[social-media section] end-->
                                 <!-- [ rating list ] starts-->
                                 <div class="col-xl-4 col-md-6">
