@@ -38,12 +38,29 @@
                 <span class="r s"></span>
                 <span class="r"></span>
             </div>
+            <div class="alert alert-success alert-dismissible" style="display: none;" id="successAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> The instance was created-edited.
+            </div>
+            <div class="alert alert-info alert-dismissible " style="display: none;" id="infoAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+            </div>
+            <div class="alert alert-warning alert-dismissible " style="display: none;" id="warningAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+            </div>
+            <div class="alert alert-danger alert-dismissible " style="display: none;" id="dangerAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative
+                action.
+            </div>
             <div class="card">
-                <div class="card-body text-center">
+                <div class="card-body text-center"style="background: #3f4d67;">
                     <div class="mb-4">
-                        <i class="feather icon-unlock auth-icon"></i>
+                        <label><img src="assets/images/keystore_logo.png" class="image-responsive" width="125px" height="50px"></label>
                     </div>
-                    <h3 class="mb-4">Login</h3>
+                    <i class="feather icon-unlock auth-icon"></i><h3 class="mb-4">Sign in</h3>
                     <div class="input-group mb-3">
                         <input id="emailSesion" type="email" class="form-control" placeholder="Email">
                     </div>

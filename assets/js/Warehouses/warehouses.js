@@ -1,24 +1,52 @@
 class Warehouse {
     constructor() {
+        this.auth = firebase.auth();
         this.db = firebase.firestore();
-        /* const settings = { timestampsInSnapshots: true }
-        this.db.settings(settings) */
+
+        this.loadUserLogin();
+    }
+
+    loadUserLogin() {
+        this.auth.onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                console.log(user);
+                if(user.photoURL){
+                    document.getElementById("userLoginName").innerHTML = user.photoURL + ' ' +   user.displayName;
+                }else{
+                    document.getElementById("userLoginName").innerHTML = '<img src="../assets/images/ic_launcher-web.png" class="circle mr-3 image-responsive" width="55px" height="55px" > ' +  user.displayName;
+                }
+            } else {
+                // No user is signed in.
+                console.log(user);
+                this.auth.signOut();
+                window.location.replace("index.html");
+            }
+        });
+    }
+    printSuccessAlert(msg) {
+        document.getElementById("successAlert").innerHTML = (successAlert + msg);
+        document.getElementById("successAlert").style.display = 'block';
+        setTimeout(function () {
+            document.getElementById("successAlert").style.display = 'none';
+        }, 4000);
+    }
+    printDangerAlert(msg) {
+        document.getElementById("dangerAlert").innerHTML = (dangerAlert + msg);
+        document.getElementById("dangerAlert").style.display = 'block';
+        setTimeout(function () {
+            document.getElementById("dangerAlert").style.display = 'none';
+        }, 4000);
+    }
+    printWarningAlert(msg) {
+        document.getElementById("warningAlert").innerHTML = (warningAlert + msg);
+        document.getElementById("warningAlert").style.display = 'block';
+        setTimeout(function () {
+            document.getElementById("warningAlert").style.display = 'none';
+        }, 4000);
     }
 
     create(name, description, Latitud, Longitud, Address, imgUrl) {
-        /* return this.db.collection('posts').add({
-            uid: uid,
-            autor: emailUser,
-            titulo: titulo,
-            descripcion: descripcion,
-            imagenLink: imagenLink,
-            videoLink: videoLink,
-            fecha: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(refDoc => {
-            console.log(`Id del post => ${refDoc.id}`)
-        }).catch(error => {
-                console.error(`Error creando el post => ${error}`)
-            }) */
         return this.db.collection('Warehouses').add({
             //uid: uid,
             Lat: Latitud,
@@ -34,8 +62,52 @@ class Warehouse {
         })
     }
 
+    getAll(){
+        this.db.collection('Warehouses').onSnapshot(querySnapshot => {
+           //console.log(querySnapshot);
+            querySnapshot.forEach(warehouse => {
+                //console.log(warehouse);
+                //console.log(warehouse.data());
+                $('#Warehouses').empty();
+                if(querySnapshot.empty){                    
+                    //$('#Warehouses').append(this.obtenerTemplatePostVacio())
+                }else{                    
+                    querySnapshot.forEach(row => {
+                      let rowHtml = this.getWarehouseTempate(
+                          row.id,
+                          row.data().name,
+                          row.data().Lat,
+                          row.data().Lng,
+                          row.data().address,
+                          row.data().imageUrl,
+                          row.data().description
+                      );
+                      $('#Warehouses').append(rowHtml)
+                })
+            }
+            })
+        })
+    }
+    
+    getWarehouseTempate(id,name, latitude,longitude,address, imageUrl,descripcion){
+        return `<tr>
+                    <td>'${name}'</td>
+                    <td>'${latitude}'</td>
+                    <td>'${longitude}'</td>
+                    <td>'${address}'</td>
+                    <!--<td>'${imageUrl}'</td>-->
+                    <td>'${descripcion}'</td>
+                    <td>
+                        <ul class="breadcrumb" style="background: none;">
+                            <li class="breadcrumb-item"><a href="#" class="feather icon-edit-2 editRow" title="Edit" data-id="${id}"></a></li>
+                            <li class="breadcrumb-item"><a href="#" class="feather icon-trash-2 DeleteRow" title="Delete" data-id="${id}"></a></li>
+                        </ul>
+                    </td>
+                </tr>`;
+    }
     consultarTodosPost() {
         this.db.collection('Warehouses').onSnapshot(querySnapshot => {
+            console.log(querySnapshot);
             $('#Warehouses').empty()
             if (querySnapshot.empty) {
                 $('#Warehouses').append(this.obtenerTemplatePostVacio())

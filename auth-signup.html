@@ -13,9 +13,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
-    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template"/>
-    <meta name="author" content="CodedThemes"/>
+    <meta name="description"
+        content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords"
+        content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template" />
+    <meta name="author" content="CodedThemes" />
 
     <!-- Favicon icon -->
     <!-- <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> -->
@@ -38,14 +40,34 @@
                 <span class="r s"></span>
                 <span class="r"></span>
             </div>
+            <div class="alert alert-success alert-dismissible" style="display: none;" id="successAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> The instance was created-edited.
+            </div>
+            <div class="alert alert-info alert-dismissible " style="display: none;" id="infoAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+            </div>
+            <div class="alert alert-warning alert-dismissible " style="display: none;" id="warningAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+            </div>
+            <div class="alert alert-danger alert-dismissible " style="display: none;" id="dangerAlert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative
+                action.
+            </div>
             <div class="card">
-                <div class="card-body text-center">
+                <div class="card-body text-center" style="background: #3f4d67;">
                     <div class="mb-4">
-                        <i class="feather icon-user-plus auth-icon"></i>
+                        <label><img src="assets/images/keystore_logo.png" class="image-responsive" width="125px"
+                                height="50px"></label>
                     </div>
+
+                    <i class="feather icon-user-plus auth-icon"></i>
                     <h3 class="mb-4">Sign up</h3>
                     <div class="input-group mb-3">
-                        <input id="txtUserNameReg"   type="text" class="form-control" placeholder="Username">
+                        <input id="txtUserNameReg" type="text" class="form-control" placeholder="Username">
                     </div>
                     <div class="input-group mb-3">
                         <input id="txtEmailReg" type="email" class="form-control" placeholder="Email">
@@ -59,14 +81,15 @@
                             <label for="checkbox-fill-1" class="cr"> Save Details</label>
                         </div>
                     </div>
-                    <div class="form-group text-left">
+                    <!-- <div class="form-group text-left">
                         <div class="checkbox checkbox-fill d-inline">
                             <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2">
-                            <label for="checkbox-fill-2" class="cr">Send me the <a href="#!"> Newsletter</a> weekly.</label>
+                            <label for="checkbox-fill-2" class="cr">Send me the <a href="#!"> Newsletter</a>
+                                weekly.</label>
                         </div>
-                    </div>
+                    </div> -->
                     <button id="btnSignUp" class="btn btn-primary shadow-2 mb-4">Sign up</button>
-                    <p class="mb-0 text-muted">Allready have an account? <a href="auth-signin.html"> Log in</a></p>
+                    <p class="mb-0 text-muted">Allready have an account? <a href="auth-signin.html"> Sign in</a></p>
                 </div>
             </div>
         </div>
@@ -81,16 +104,17 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
               https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
-    
+
     <script src="assets/js/Auth/authetication.js"></script>
-    <script src="assets/js/Auth/autheticationController.js"></script>   
+    <script src="assets/js/Auth/autheticationController.js"></script>
 
 
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script> -->
     <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
-     
+
 
 </body>
+
 </html>
