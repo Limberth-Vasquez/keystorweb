@@ -187,12 +187,36 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal">Close</button>
-                        <button type="button" class="btn btn-primary" id="saveWarehouse">Save</button>
+                        <button type="button" class="btn btn-primary" id="btnSave">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnCloseDeleteModal">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel" style="position: absolute;" >Confirm Delete</h4>
+                    </div>
+                
+                    <div class="modal-body">
+                        <p>You are about to delete one track, this procedure is irreversible.</p>
+                        <p>Do you want to proceed?</p>
+                        <p class="debug-url"></p>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancelDelete">Cancel</button>
+                        <a class="btn btn-danger btn-ok" id="btnConfirmDelete">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <button class="btn btn-default" data-href="/delete.php?id=54" data-toggle="modal" data-target="#confirm-delete">
+            Delete record #54
+        </button> -->
     </div>
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
@@ -258,7 +282,7 @@
                                                 <th><span>Longitude</span></th>
                                                 <th><span>Address</span></th>
                                                 <!-- <th><span>Image URL</span></th> -->
-                                                <th><span>Description</span></th>
+                                                <!-- <th><span>Description</span></th> -->
                                                 <th><span>Actions</span></th>
                                             </tr>
                                         </thead>
@@ -296,7 +320,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
 
     <script src="../assets/js/Warehouses/warehouseController.js"></script>
-    <script src="../assets/js/Warehouses/warehouses.js"></script>
+    <script src="../assets/js/DAO.js"></script>
+    <script src="../assets/js/Warehouses/warehouseDAO.js"></script>
+    <script src="../assets/js/Warehouses/warehouse.js"></script>
 
     <script src="../assets/js/vendor-all.min.js"></script>
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
