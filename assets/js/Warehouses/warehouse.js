@@ -1,5 +1,6 @@
 class Warehouse {
     constructor(){        
+        this.id = '';
         this.description = '';
         this.name = '';
         this.Lat = '';

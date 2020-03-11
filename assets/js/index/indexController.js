@@ -1,9 +1,39 @@
 $(() => {
-    const index = new Index();
-    successAlert = '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-        '<strong>Success!</strong> ';
-    dangerAlert = '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-        '<strong>Danger!</strong> ';
-    warningAlert = '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-        '<strong>Warning!</strong> ';
+    //START
+    const _index = new IndexDAO();
+    var _isUserAuthenticated = false;
+    var _isEditing = false;
+    isUserAuthenticated();
+    //START
+
+    $("#btnLogout").click(() => {
+        _index.signOut();
+        window.location.replace("auth-signin.html");
+    });
+    /*****************************************************************************************************/
+    function isUserAuthenticated() {
+        _index.loadUserLogin(function (user) {
+            if (user) {
+                // User is signed in.
+                if (user.photoURL != null && user.displayName != null) {
+                    document.getElementById("userLoginName").innerHTML = user.photoURL + ' ' + user.displayName;
+                } else {
+                    document.getElementById("userLoginName").innerHTML = '<img src="assets/images/ic_launcher-web.png" class="circle mr-3 image-responsive" width="55px" height="55px" > ' + user.email;
+                }
+                _isUserAuthenticated = true;
+
+                printWarningAlert(' Error you must be authenticated.');
+                //loadAll();
+            } else {
+                // No user is signed in.
+                _isUserAuthenticated = false;
+                printWarningAlert(' Error you must be authenticated.');
+                //document.getElementById("closeModal").click();
+                _index.signOut();
+                window.location.replace("auth-signin.html");
+            }
+            console.log(user);
+        });
+    }
+    /*****************************************************************************************************/
 });

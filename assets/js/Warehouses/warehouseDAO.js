@@ -24,6 +24,16 @@ class WarehouseDAO extends DAO {
             name: warehouse.name
         });
     }
+    update(warehouse) {
+        return this.db.collection(this.collection).doc(warehouse.id).set({
+            Lat: warehouse.Lat,
+            Lng: warehouse.Lng,
+            address: warehouse.address,
+            description: warehouse.description,
+            imageUrl: warehouse.imageUrl,
+            name: warehouse.name
+        });
+    }
     delete(id) {
         //return this.db.collection(this.collection).doc(id).delete();
         return super.delete(id);

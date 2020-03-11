@@ -1,26 +1,18 @@
 $(() => {
-    successAlert =
-        '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-        '<strong>Success!</strong> ';
-    dangerAlert =
-        '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-        '<strong>Danger!</strong> ';
-    warningAlert =
-        '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-        '<strong>Danger!</strong> ';
-
+    $(document).ready(function () {
+    });
     //START
     const _WarehouseDAO = new WarehouseDAO();
     var _isUserAuthenticated = false;
     var _isEditing = false;
     isUserAuthenticated();
     //START
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     function loadAll() {
         _WarehouseDAO.getAll().onSnapshot(querySnapshot => {
             querySnapshot.forEach(result => {
                 //console.log(result.data());
-                $('#Warehouses').empty();
+                $('#tbody').empty();
                 if (querySnapshot.empty) {
                     //$('#Warehouses').append(this.obtenerTemplatePostVacio())
                     printWarningAlert(' Not results found.');
@@ -36,13 +28,15 @@ $(() => {
                             row.data().imageUrl,
                             row.data().description
                         );
-                        $('#Warehouses').append(rowHtml)
+                        $('#tbody').append(rowHtml)
                     })
+
+                    $('#tableComplete').DataTable();
                 }
             })
         });
     }
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     function getRowTempate(id, name, latitude, longitude, address, imageUrl, descripcion) {
         return `<tr>
                     <td>'${name}'</td>
@@ -59,7 +53,7 @@ $(() => {
                     </td>
                 </tr>`;
     }
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     function isUserAuthenticated() {
         _WarehouseDAO.loadUserLogin(function (user) {
             if (user) {
@@ -78,7 +72,7 @@ $(() => {
                 printWarningAlert(' To create the Warehouse you must be authenticated.');
                 document.getElementById("closeModal").click();
                 _WarehouseDAO.signOut();
-                window.location.replace("auth-signin.html");
+                window.location.replace("../auth-signin.html");
             }
             console.log(user);
         });
@@ -92,7 +86,7 @@ $(() => {
             return true;
         }*/
     }
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     function invalidInputForm() {
         if ($('#description').val() == '') {
             return true;
@@ -114,8 +108,8 @@ $(() => {
         }
         return false;
     }
-/*****************************************************************************************************/
-    $("#btnSave").click(() => {
+    /*****************************************************************************************************/
+    $("#btnConfirmSave").click(() => {
         if (_isUserAuthenticated) {
             if (!invalidInputForm()) {
                 var warehouse = new Warehouse();
@@ -139,80 +133,108 @@ $(() => {
             }
         }
     });
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
+    $('#btnOpenModal').click(() => {
+        $("#FormId").trigger('reset');
+        $("#CreateModalLabel").css("display", "block");
+        $("#EditModalLabel").css("display", "none");
+        $("#btnConfirmSave").css("display", "block");
+        $("#btnConfirmEdit").css("display", "none");
+    });
+    /*****************************************************************************************************/
     $(document).on("click", ".btnEditRow", function (event) {
-        var id = $(this).data("id");
-        if (id) {
-            _WarehouseDAO.getById(id).then(result => {
-                var doc = result.data();
-                console.log(doc);
-                $('#btnOpenModal').click();
-                $('#description').val(doc.description);
-                $('#name').val(doc.name);
-                $('#Latitud').val(doc.Lat);
-                $('#Longitud').val(doc.Lng);
-                $('#Address').val(doc.address);
-                $('#imgUrl').val(doc.imageUrl);
-                //printSuccessAlert('Document retrieved successfully!');
-            }).catch(err => {
-                printDangerAlert('Error retrieving document: ' + err.message);
+        if (_isUserAuthenticated) {
+            var id = $(this).data("id");
+            if (id) {
+                _WarehouseDAO.getById(id).then(result => {
+                    var doc = result.data();
+                    console.log(doc);
+                    $('#btnOpenModal').click();
+                    $('#description').val(doc.description);
+                    $('#name').val(doc.name);
+                    $('#Latitud').val(doc.Lat);
+                    $('#Longitud').val(doc.Lng);
+                    $('#Address').val(doc.address);
+                    $('#imgUrl').val(doc.imageUrl);
+                    //printSuccessAlert('Document retrieved successfully!');
+                    $("#CreateModalLabel").css("display", "none");
+                    $("#EditModalLabel").css("display", "block");
+                    $("#btnConfirmSave").css("display", "none");
+                    $("#btnConfirmEdit").css("display", "block");
+
+                    var id = $(this).data("id");
+                    $('#btnConfirmEdit').attr('data-id', id);
+                }).catch(err => {
+                    printDangerAlert('Error retrieving document: ' + err.message);
+                    document.getElementById("closeModal").click();
+                    console.log('Error retrieving document: ', err.message);
+                });
+            } else {
+                printDangerAlert('Error retrieving document: ID is not defined.');
                 document.getElementById("closeModal").click();
-                console.log('Error retrieving document: ', err.message);
-            });
-        } else {
-            printDangerAlert('Error retrieving document: ID is not defined.');
+            }
+        }
+    });
+
+    /*****************************************************************************************************/
+    $("#btnConfirmEdit").click(() => {
+        if (_isUserAuthenticated) {
+            var id = $('#btnConfirmEdit').data("id");
+            if (id) {
+
+                var warehouse = new Warehouse();
+                warehouse.id = id;
+                warehouse.description = $('#description').val();
+                warehouse.name = $('#name').val();
+                warehouse.Lat = $('#Latitud').val();
+                warehouse.Lng = $('#Longitud').val();
+                warehouse.address = $('#Address').val();
+                warehouse.imageUrl = $('#imgUrl').val();
+
+                _WarehouseDAO.update(warehouse).then(result => {
+                    printSuccessAlert('Document updated successfully!');
+                    console.log('Document updated successfully!', result);
+                }).catch(error => {
+                    printDangerAlert('Error updating document: ' + error.message);
+                    console.error('Error updating document: ', error);
+                });
+            } else {
+                printDangerAlert('Error updating document: ID is not defined.');
+            }
             document.getElementById("closeModal").click();
         }
     });
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     $(document).on("click", ".btnDeleteRow", function (event) {
-        var id = $(this).data("id");
-        var name = $(this).data("name");
-        $('#btnConfirmDelete').attr('data-id', id);
-        $('.debug-url').html('Delete ID: <strong><span>' + name + '</span></strong>');
+        if (_isUserAuthenticated) {
+            var id = $(this).data("id");
+            var name = $(this).data("name");
+            $('#btnConfirmDelete').attr('data-id', id);
+            $('.debug-url').html('Delete ID: <strong><span>' + name + '</span></strong>');
+        }
     });
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     $("#btnConfirmDelete").click(() => {
-        var id = $('#btnConfirmDelete').data("id");
-        if (id) {
-            _WarehouseDAO.delete(id).then(result => {
-                printSuccessAlert('Document successfully deleted!');
-                console.log('Document successfully deleted! ', result);
-            }).catch(error => {
-                printDangerAlert('Error removing document: ' + error.message);
-                console.error('Error removing document: ', error);
-            });
-        } else {
-            printDangerAlert('Error removing document: ID is not defined.');
-        };
-        document.getElementById("btnCloseDeleteModal").click();
+        if (_isUserAuthenticated) {
+            var id = $('#btnConfirmDelete').data("id");
+            if (id) {
+                _WarehouseDAO.delete(id).then(result => {
+                    printSuccessAlert('Document successfully deleted!');
+                    console.log('Document successfully deleted! ', result);
+                }).catch(error => {
+                    printDangerAlert('Error removing document: ' + error.message);
+                    console.error('Error removing document: ', error);
+                });
+            } else {
+                printDangerAlert('Error removing document: ID is not defined.');
+            };
+            document.getElementById("btnCloseDeleteModal").click();
+        }
     });
-/*****************************************************************************************************/
-    function printSuccessAlert(msg) {
-        document.getElementById("successAlert").innerHTML = (successAlert + msg);
-        document.getElementById("successAlert").style.display = 'block';
-        setTimeout(function () {
-            document.getElementById("successAlert").style.display = 'none';
-        }, 4000);
-    }
-    function printDangerAlert(msg) {
-        document.getElementById("dangerAlert").innerHTML = (dangerAlert + msg);
-        document.getElementById("dangerAlert").style.display = 'block';
-        setTimeout(function () {
-            document.getElementById("dangerAlert").style.display = 'none';
-        }, 4000);
-    }
-    function printWarningAlert(msg) {
-        document.getElementById("warningAlert").innerHTML = (warningAlert + msg);
-        document.getElementById("warningAlert").style.display = 'block';
-        setTimeout(function () {
-            document.getElementById("warningAlert").style.display = 'none';
-        }, 4000);
-    }
-/*****************************************************************************************************/
+    /*****************************************************************************************************/
     //$('#confirm-delete').on('show.bs.modal', function(e) {
     //$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 
     //$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
     //});
-})
+});

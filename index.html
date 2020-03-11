@@ -233,7 +233,7 @@
                             <div class="pro-head">
                                 <img src="assets/images/ic_launcher-web.png" class="img-radius" alt="User-Profile-Image">
                                 <span>LIMBERTH VASQUEZ</span>
-                                <a href="" class="dud-logout" title="Logout">
+                                <a href="" class="dud-logout" title="Logout" id="btnLogout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
@@ -256,6 +256,23 @@
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
                 <div class="pcoded-inner-content">
+                    <div class="alert alert-success alert-dismissible" style="display: none;" id="successAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> The instance was created-edited.
+                    </div>
+                    <div class="alert alert-info alert-dismissible " style="display: none;" id="infoAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+                    </div>
+                    <div class="alert alert-warning alert-dismissible " style="display: none;" id="warningAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+                    </div>
+                    <div class="alert alert-danger alert-dismissible " style="display: none;" id="dangerAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative
+                        action.
+                    </div>
                     <!-- [ breadcrumb ] start -->
 
                     <!-- [ breadcrumb ] end -->
@@ -897,7 +914,9 @@
 
     
     <script src="assets/js/index/indexController.js"></script>
-    <script src="assets/js/index/index.js"></script>
+    <script src="assets/js/DAO.js"></script>
+    <script src="assets/js/index/indexDAO.js"></script>
+    <script src="assets/js/util.js"></script>
 
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>

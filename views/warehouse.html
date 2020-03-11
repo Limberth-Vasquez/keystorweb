@@ -20,6 +20,9 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css"/>
 </head>
 
 <body>
@@ -35,7 +38,8 @@
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
                 <a href="../index.html" class="b-brand">
-                    <label><img src="../assets/images/keystore_logo.png" class="image-responsive" width="125px" height="50px"></label>
+                    <label><img src="../assets/images/keystore_logo.png" class="image-responsive" width="125px"
+                            height="50px"></label>
                 </a>
                 <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
             </div>
@@ -152,13 +156,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create - Edit Warehouse</h5>
+                        <h5 class="modal-title" id="CreateModalLabel">Create Warehouse</h5>
+                        <h5 class="modal-title" id="EditModalLabel" style="display: none;">Edit Warehouse</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="FormId">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Name:</label>
                                 <input type="text" class="form-control" id="name">
@@ -186,29 +191,35 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal">Close</button>
-                        <button type="button" class="btn btn-primary" id="btnSave">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="closeModal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmSave">Save</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmEdit"
+                            style="display: none;">Update</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                
+
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnCloseDeleteModal">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel" style="position: absolute;" >Confirm Delete</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            id="btnCloseDeleteModal">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel" style="position: absolute;">Confirm Delete</h4>
                     </div>
-                
+
                     <div class="modal-body">
                         <p>You are about to delete one track, this procedure is irreversible.</p>
                         <p>Do you want to proceed?</p>
                         <p class="debug-url"></p>
                     </div>
-                    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancelDelete">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            id="btnCancelDelete">Cancel</button>
                         <a class="btn btn-danger btn-ok" id="btnConfirmDelete">Delete</a>
                     </div>
                 </div>
@@ -273,7 +284,9 @@
                             </div>
                             <div class="card-block table-border-style">
                                 <div class="table-responsive">
-                                    <table class="table table-hover footable toggle-circle-filled" data-page-size="4" data-filter="#filter" data-filter-text-only="true">
+                                    <table id="tableComplete" class="table table-hover footable toggle-circle-filled">
+                                        <!-- <table id="example"   class="table table-striped table-bordered" style="width:100%"> -->
+
                                         <thead>
                                             <tr>
                                                 <!-- <th>#</th> -->
@@ -286,11 +299,20 @@
                                                 <th><span>Actions</span></th>
                                             </tr>
                                         </thead>
-                                        <tbody id="Warehouses">
+                                        <tbody id="tbody">
                                             <!--  generate in js -->
                                         </tbody>
+
+                                         <!-- <tfoot>
+                                            <tr>
+                                                <th><span>Name</span></th>
+                                                <th><span>Latitude</span></th>
+                                                <th><span>Longitude</span></th>
+                                                <th><span>Address</span></th>
+                                                <th><span>Actions</span></th>
+                                            </tr>
+                                        </tfoot>  -->
                                     </table>
-                                    <ul class="pagination pull-right hide-if-no-paging"></ul>
                                 </div>
                             </div>
                         </div>
@@ -323,6 +345,7 @@
     <script src="../assets/js/DAO.js"></script>
     <script src="../assets/js/Warehouses/warehouseDAO.js"></script>
     <script src="../assets/js/Warehouses/warehouse.js"></script>
+    <script src="../assets/js/util.js"></script>
 
     <script src="../assets/js/vendor-all.min.js"></script>
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -332,6 +355,11 @@
 
     <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
 
+    <!-- <script defer src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <script defer src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+<!--     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.js"></script>
+ -->
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <!-- <script src="/__/firebase/7.8.1/firebase-app.js"></script> -->
