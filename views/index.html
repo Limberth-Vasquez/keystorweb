@@ -11,16 +11,16 @@
     <meta name="author" content="CodedThemes"/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="assets/images/ic_launcher-web.png" type="image/x-icon">
-    <!--<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">-->
+    <link rel="icon" href="../assets/images/ic_launcher-web.png" type="image/x-icon">
+    <!--<link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">-->
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
-    <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
-    <script src="assets/plugins/jquery/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- <link rel="stylesheet" href="../assets/css/bootstrap.css"> -->
+    <script src="../assets/plugins/jquery/js/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -36,218 +36,14 @@
     </div>
     <!-- [ Pre-loader ] End -->
     <!-- [ navigation menu ] start -->
-    <nav class="pcoded-navbar">
-        <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
-                    <!-- <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
-                    </div> -->
-                    <label><img src="assets/images/keystore_logo.png" class="image-responsive" width="125px" height="50px"></label>
-                    <!-- <span class="b-title">Keystor</span> -->
-                    
-                </a>
-                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-            </div>
-            <div class="navbar-content scroll-div">
-                <ul class="nav pcoded-inner-navbar">
-                    <li class="nav-item active pcoded-menu-caption mb-2">
-                        <!-- <label style="font-size: 12px;"><img src="assets/images/ic_launcher-web.png" class="circle mr-3 image-responsive" width="55px" height="55px">Limberth Vasquez</label> -->
-                        <label style="font-size: 12px;" id="userLoginName"></label>
-                    </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
-                        <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
-                    </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        
-                    </li>
-                    <!-- <li class="nav-item pcoded-menu-caption">
-                        <label>Lista 1</label>
-                    </li> -->
-                    <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" class="nav-item pcoded-hasmenu">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Security</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a></li>
-                            <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
-                        </ul>
-                    </li>
-                    <li data-username="Table bootstrap datatable footable" class="nav-item pcoded-hasmenu">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Users</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="" class="" target="_blank">Adveriser Users</a></li>
-                            <li class=""><a href="" class="" target="_blank">Client Users</a></li>
-                            <li class=""><a href="" class="" target="_blank">Event Users</a></li>
-                            <li class=""><a href="" class="" target="_blank">Warehouse Users</a></li>
-                        </ul>
-                    </li>
-                    <!-- <li data-username="Table bootstrap datatable footable" class="nav-item pcoded-hasmenu">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-more-horizontal"></i></span><span class="pcoded-mtext">Services</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="" class="" target="_blank">Type Services </a></li>
-                            <li class=""><a href="" class="" target="_blank">Services Advertiser</a></li>
-                            <li class=""><a href="" class="" target="_blank">Services Warehouse</a></li>
-                        </ul>
-                    </li> -->
-                    <!-- <li class="nav-item pcoded-menu-caption">
-                        <label>Lista 2</label>
-                    </li> -->
-                    <li data-username="Charts Morris" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Contracts</span></a></li>
-                    <li data-username="Maps Google" class="nav-item"><a href="views/warehouse.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Warehouses</span></a></li>
-                    <li data-username="Maps Google" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-zap"></i></span><span class="pcoded-mtext">Events</span></a></li>
-                    <li data-username="Maps Google" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-mail"></i></span><span class="pcoded-mtext">Publicities</span></a></li>
-                    <li data-username="Maps Google" class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map-pin"></i></span><span class="pcoded-mtext">Locations</span></a></li>
-                    <!-- <li class="nav-item pcoded-menu-caption">
-                        <label>Lista 3</label>
-                    </li> -->
-                    <li data-username="Table bootstrap datatable footable" class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <span class="pcoded-micon">
-                                <i class="feather icon-server"></i>
-                            </span>
-                            <span class="pcoded-mtext">Roles</span>
-                        </a>
-                    </li>
-                    <li data-username="Sample Page" class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="pcoded-micon">
-                                <i class="feather icon-sidebar"></i>
-                            </span>
-                            <span class="pcoded-mtext">Type Services</span>
-                        </a>
-                    </li>
-                    <li data-username="Configurations" class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="pcoded-micon">
-                                <i class="feather icon-settings"></i>
-                            </span>
-                            <span class="pcoded-mtext">Configurations</span>
-                        </a>
-                    </li>
-                    <!-- <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled menu</span></a></li> -->
-                </ul>
-            </div>
-        </div>
+    <nav class="pcoded-navbar" id="leftMenuSection">
+        <!--  generate in js -->
     </nav>
     <!-- [ navigation menu ] end -->
 
     <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light border-bottom shadow-sm">
-        <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
-                   <!-- <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
-                   </div> -->
-                   <label><img src="assets/images/keystore_logo.png" class="image-responsive" width="125px" height="50px"></label>
-
-                   <!-- <span class="b-title">Keystor</span> -->
-               </a>
-        </div>
-        <a class="mobile-menu" id="mobile-header" href="javascript:">
-            <i class="feather icon-more-horizontal"></i>
-        </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize-2"></i></a></li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Opciones</a>
-                    <ul class="dropdown-menu border">
-                        <li><a class="dropdown-item" href="javascript:">Accion 1</a></li>
-                        <li><a class="dropdown-item" href="javascript:">Accion 2</a></li>
-                        <li><a class="dropdown-item" href="javascript:">Accion 3</a></li>
-                    </ul>
-                </li> -->
-                <li class="nav-item">
-                    <div class="main-search">
-                        <div class="input-group">
-                            <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
-                            <a href="javascript:" class="input-group-append search-close">
-                                <i class="feather icon-x input-group-text"></i>
-                            </a>
-                            <span class="input-group-append search-btn btn">
-                                <i class="feather icon-search input-group-text"></i>
-                            </span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i><span class="badge badge-info position-absolute badge-bell">9</span></a>
-                        <div class="dropdown-menu dropdown-menu-right notification shadow">
-                            <div class="noti-head border-bottom border-left border-right h6">
-                                <h6 class="d-inline-block m-b-0">Notificaciones</h6>
-                                <div class="float-right">
-                                    <a href="javascript:" class="m-r-10">Marcar como leidas</a>
-                                    <a href="javascript:">Limpiar</a>
-                                </div>
-                            </div>
-                            <ul class="noti-body border-left border-right">
-                                <li class="n-title">
-                                    <p class="m-b-0">Recientes</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="assets/images/ic_launcher-web.png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>LIMBERTH VASQUEZ</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Nueva elemento agregado</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="n-title">
-                                    <p class="m-b-0">Anteriores</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Te ha enviado un nuevo mail</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Acaba de inicar sesion</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="noti-footer border-top border-right border-left">
-                                <a href="javascript:">Mostrar todas</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown drp-user">
-                        <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon feather icon-settings"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification border-bottom border-left border-right shadow">
-                            <div class="pro-head">
-                                <img src="assets/images/ic_launcher-web.png" class="img-radius" alt="User-Profile-Image">
-                                <span>LIMBERTH VASQUEZ</span>
-                                <a href="" class="dud-logout" title="Logout" id="btnLogout">
-                                    <i class="feather icon-log-out"></i>
-                                </a>
-                            </div>
-                            <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Configuracion</a></li>
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Perfil</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-mail"></i> Mis Mensajes</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-lock"></i> Pantalla de bloqueo</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light border-bottom shadow-sm" id="headerSection">
+        
     </header>
     <!-- [ Header ] end -->
 
@@ -344,7 +140,7 @@
                                                 <table class="table table-hover">
                                                     <tbody>
                                                         <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></td>
+                                                            <td><img class="rounded-circle" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user"></td>
                                                             <td>
                                                                 <h6 class="mb-1">Isabella Christensen</h6>
                                                                 <p class="m-0">Lorem Ipsum is simply…</p>
@@ -355,7 +151,7 @@
                                                             <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
                                                         </tr>
                                                         <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></td>
+                                                            <td><img class="rounded-circle" style="width:40px;" src="../assets/images/user/avatar-2.jpg" alt="activity-user"></td>
                                                             <td>
                                                                 <h6 class="mb-1">Mathilde Andersen</h6>
                                                                 <p class="m-0">Lorem Ipsum is simply text of…</p>
@@ -366,7 +162,7 @@
                                                             <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
                                                         </tr>
                                                         <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user"></td>
+                                                            <td><img class="rounded-circle" style="width:40px;" src="../assets/images/user/avatar-3.jpg" alt="activity-user"></td>
                                                             <td>
                                                                 <h6 class="mb-1">Karla Sorensen</h6>
                                                                 <p class="m-0">Lorem Ipsum is simply…</p>
@@ -377,7 +173,7 @@
                                                             <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
                                                         </tr>
                                                         <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></td>
+                                                            <td><img class="rounded-circle" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user"></td>
                                                             <td>
                                                                 <h6 class="mb-1">Ida Jorgensen</h6>
                                                                 <p class="m-0">Lorem Ipsum is simply text of…</p>
@@ -388,7 +184,7 @@
                                                             <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
                                                         </tr>
                                                         <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></td>
+                                                            <td><img class="rounded-circle" style="width:40px;" src="../assets/images/user/avatar-2.jpg" alt="activity-user"></td>
                                                             <td>
                                                                 <h6 class="mb-1">Albert Andersen</h6>
                                                                 <p class="m-0">Lorem Ipsum is simply dummy…</p>
@@ -627,7 +423,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">The quick brown fox</h6>
@@ -643,7 +439,7 @@
 
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">Jumps over the lazy</h6>
@@ -659,7 +455,7 @@
 
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">Dog the quick brown</h6>
@@ -674,7 +470,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">The quick brown fox</h6>
@@ -705,7 +501,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">Jumps over the lazy</h6>
@@ -720,7 +516,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">The quick brown fox</h6>
@@ -735,7 +531,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">The quick brown fox</h6>
@@ -750,7 +546,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">Dog the quick brown</h6>
@@ -781,7 +577,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">Dog the quick brown</h6>
@@ -796,7 +592,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">The quick brown fox</h6>
@@ -811,7 +607,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">Jumps over the lazy</h6>
@@ -826,7 +622,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="../assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>
                                                         </td>
                                                         <td>
                                                             <h6 class="m-0">The quick brown fox</h6>
@@ -867,31 +663,31 @@
                 <ul class="iew-download">
                     <li>
                         <a href="http://www.google.com/chrome/">
-                            <img src="assets/images/browser/chrome.png" alt="Chrome">
+                            <img src="../assets/images/browser/chrome.png" alt="Chrome">
                             <div>Chrome</div>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.mozilla.org/en-US/firefox/new/">
-                            <img src="assets/images/browser/firefox.png" alt="Firefox">
+                            <img src="../assets/images/browser/firefox.png" alt="Firefox">
                             <div>Firefox</div>
                         </a>
                     </li>
                     <li>
                         <a href="http://www.opera.com">
-                            <img src="assets/images/browser/opera.png" alt="Opera">
+                            <img src="../assets/images/browser/opera.png" alt="Opera">
                             <div>Opera</div>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.apple.com/safari/">
-                            <img src="assets/images/browser/safari.png" alt="Safari">
+                            <img src="../assets/images/browser/safari.png" alt="Safari">
                             <div>Safari</div>
                         </a>
                     </li>
                     <li>
                         <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                            <img src="assets/images/browser/ie.png" alt="">
+                            <img src="../assets/images/browser/ie.png" alt="">
                             <div>IE (11 & above)</div>
                         </a>
                     </li>
@@ -902,8 +698,8 @@
     <![endif]-->
     <!-- Warning Section Ends -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/js/config/ConfigFirebase.js"></script>
-    <script src="assets/js/Firebase.js"></script>
+    <script src="../assets/js/config/ConfigFirebase.js"></script>
+    <script src="../assets/js/Firebase.js"></script>
     <!-- Required Js -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
@@ -913,14 +709,14 @@
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
 
     
-    <script src="assets/js/index/indexController.js"></script>
-    <script src="assets/js/DAO.js"></script>
-    <script src="assets/js/index/indexDAO.js"></script>
-    <script src="assets/js/util.js"></script>
+    <script src="../assets/js/index/indexController.js"></script>
+    <script src="../assets/js/DAO.js"></script>
+    <script src="../assets/js/index/indexDAO.js"></script>
+    <script src="../assets/js/util.js"></script>
 
-    <script src="assets/js/vendor-all.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/pcoded.min.js"></script>
+    <script src="../assets/js/vendor-all.min.js"></script>
+	<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/pcoded.min.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
 
     <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>

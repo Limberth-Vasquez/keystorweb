@@ -21,7 +21,19 @@ class WarehouseDAO extends DAO {
             address: warehouse.address,
             description: warehouse.description,
             imageUrl: warehouse.imageUrl,
-            name: warehouse.name
+            name: warehouse.name,
+            email: warehouse.email,
+            phone: warehouse.phone,
+            warehouseOwner: warehouse.warehouseOwner,
+            timeOpen: warehouse.timeOpen,
+            timeClose: warehouse.timeClose,
+            capacityPerPallet: warehouse.capacityPerPallet,
+            capacityPerSpace: warehouse.capacityPerSpace,
+            fees1: warehouse.fees1,
+            fees2: warehouse.fees2,
+            fees3: warehouse.fees3,
+            country: warehouse.country,
+            active: true
         });
     }
     update(warehouse) {
@@ -31,8 +43,23 @@ class WarehouseDAO extends DAO {
             address: warehouse.address,
             description: warehouse.description,
             imageUrl: warehouse.imageUrl,
-            name: warehouse.name
+            name: warehouse.name,
+            email: warehouse.email,
+            phone: warehouse.phone,
+            warehouseOwner: warehouse.warehouseOwner,
+            timeOpen: warehouse.timeOpen,
+            timeClose: warehouse.timeClose,
+            capacityPerPallet: warehouse.capacityPerPallet,
+            capacityPerSpace: warehouse.capacityPerSpace,
+            fees1: warehouse.fees1,
+            fees2: warehouse.fees2,
+            fees3: warehouse.fees3,
+            country: warehouse.country,
+            active: warehouse.active
         });
+    }
+    deactivate(id){
+        return super.deactivate(id);
     }
     delete(id) {
         //return this.db.collection(this.collection).doc(id).delete();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Keystor - Warehouses</title>
+    <title>Keystor - Roles</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,7 +21,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-    <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" />
 </head>
 
@@ -47,17 +46,14 @@
     <!-- [ Header ] end -->
 
     <div class="container">
-        <!-- <h2>Modal Example</h2>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="CreateModalLabel">Create Warehouse</h5>
-                        <h5 class="modal-title" id="EditModalLabel" style="display: none;">Edit Warehouse</h5>
+                        <h5 class="modal-title" id="CreateModalLabel">Create Rol</h5>
+                        <h5 class="modal-title" id="EditModalLabel" style="display: none;">Edit Rol</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -65,37 +61,24 @@
                     <div class="modal-body">
                         <form id="FormId">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Name:</label>
+                                <label for="recipient-name" class="col-form-label">Name*:</label>
                                 <input type="text" class="form-control" id="name">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Latitude:</label>
-                                <input type="text" class="form-control" id="Latitud">
+                                <label for="recipient-name" class="col-form-label">Active:</label>
+                                <select id="active" size="1" class="form-control">
+                                  <option value="true">Activate</option>
+                                  <option value="false">Deactivate</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="active"> -->
                             </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Longitude:</label>
-                                <input type="text" class="form-control" id="Longitud">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Address:</label>
-                                <input type="text" class="form-control" id="Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Image URL:</label>
-                                <input type="text" class="form-control" id="imgUrl">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Description:</label>
-                                <textarea class="form-control" id="description"></textarea>
-                            </div>
+                            
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                            id="closeModal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal">Close</button>
                         <button type="button" class="btn btn-primary" id="btnConfirmSave">Save</button>
-                        <button type="button" class="btn btn-primary" id="btnConfirmEdit"
-                            style="display: none;">Update</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmEdit" style="display: none;">Update</button>
                     </div>
                 </div>
             </div>
@@ -125,9 +108,6 @@
                 </div>
             </div>
         </div>
-        <!-- <button class="btn btn-default" data-href="/delete.php?id=54" data-toggle="modal" data-target="#confirm-delete">
-            Delete record #54
-        </button> -->
     </div>
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
@@ -157,13 +137,13 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Warehouses</h5>
+                                        <h5 class="m-b-10">Roles</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html"><i
                                                     class="feather icon-home"></i></a></li>
                                         <li class="breadcrumb-item"><a href="#!">Tables</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Warehouses</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Roles</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -174,44 +154,25 @@
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Warehouses Manager</h5>
-                                <!-- <span class="d-block m-t-5">use class <code>table-hover</code> inside table
-                                    element</span> -->
+                                <h5>Roles Manager</h5>
                                 <button id="btnOpenModal" data-toggle="modal" data-target="#myModal" type="button"
-                                    class="btn btn-outline-primary" style="float: right;" title="Add Warehouse"
+                                    class="btn btn-outline-primary" style="float: right;" title="Add Rol"
                                     data-toggle="tooltip">Add</button>
-
                             </div>
                             <div class="card-block table-border-style">
                                 <div class="table-responsive">
                                     <table id="tableComplete" class="table table-hover footable toggle-circle-filled">
-                                        <!-- <table id="example"   class="table table-striped table-bordered" style="width:100%"> -->
-
                                         <thead>
                                             <tr>
                                                 <!-- <th>#</th> -->
                                                 <th><span>Name</span></th>
-                                                <th><span>Latitude</span></th>
-                                                <th><span>Longitude</span></th>
-                                                <th><span>Address</span></th>
-                                                <!-- <th><span>Image URL</span></th> -->
-                                                <!-- <th><span>Description</span></th> -->
+                                                <th><span>Active</span></th>
                                                 <th><span>Actions</span></th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
                                             <!--  generate in js -->
                                         </tbody>
-
-                                        <!-- <tfoot>
-                                            <tr>
-                                                <th><span>Name</span></th>
-                                                <th><span>Latitude</span></th>
-                                                <th><span>Longitude</span></th>
-                                                <th><span>Address</span></th>
-                                                <th><span>Actions</span></th>
-                                            </tr>
-                                        </tfoot>  -->
                                     </table>
                                 </div>
                             </div>
@@ -238,10 +199,10 @@
                https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
 
-    <script src="../assets/js/Warehouses/warehouseController.js"></script>
+    <script src="../assets/js/Roles/rolesController.js"></script>
     <script src="../assets/js/DAO.js"></script>
-    <script src="../assets/js/Warehouses/warehouseDAO.js"></script>
-    <script src="../assets/js/Warehouses/warehouse.js"></script>
+    <script src="../assets/js/Roles/rolesDAO.js"></script>
+    <script src="../assets/js/Roles/roles.js"></script>
     <script src="../assets/js/util.js"></script>
 
     <script src="../assets/js/vendor-all.min.js"></script>
@@ -254,12 +215,6 @@
 
     <!-- <script defer src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
     <script defer src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-
-    <!-- <script defer src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script> -->
-    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.js"></script> -->
-
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- <script src="/__/firebase/7.8.1/firebase-app.js"></script> -->
 </body>
+
 </html>
