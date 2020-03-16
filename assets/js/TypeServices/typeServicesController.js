@@ -2,19 +2,19 @@ $(() => {
     $(document).ready(function () {
     });
     //START
-    const _RoleDAO = new RolesDAO();
+    const _dao = new TypesServicesDAO();
     var _isUserAuthenticated = false;
     var _isEditing = false;
     isUserAuthenticated();
     //START
     /*****************************************************************************************************/
-    $(document).on("click", ".btnLogout", function (event) {
-        _RoleDAO.signOut();
+    $("#btnLogout").click(() => {
+        _dao.signOut();
         window.location.replace("auth-signin.html");
     });
     /*****************************************************************************************************/
     function loadAll() {
-        _RoleDAO.getAll().onSnapshot(querySnapshot => {
+        _dao.getAll().onSnapshot(querySnapshot => {
             if (querySnapshot.empty) {
                 printWarningAlert(' Not results found.');
                 $('#tbody').empty();
@@ -51,7 +51,7 @@ $(() => {
     }
     /*****************************************************************************************************/
     function isUserAuthenticated() {
-        _RoleDAO.loadUserLogin(function (user) {
+        _dao.loadUserLogin(function (user) {
             if (user) {
                 // User is signed in.
                 if (user.photoURL != null && user.displayName != null) {
@@ -69,7 +69,7 @@ $(() => {
                 _isUserAuthenticated = false;
                 printWarningAlert(' To create the document you must be authenticated.');
                 document.getElementById("closeModal").click();
-                _RoleDAO.signOut();
+                _dao.signOut();
                 window.location.replace("../auth-signin.html");
             }
             console.log(user);
@@ -89,12 +89,12 @@ $(() => {
     $("#btnConfirmSave").click(() => {
         if (_isUserAuthenticated) {
             if (!invalidInputForm()) {
-                var obj = new Rol();
+                var obj = new TypeService();
                 obj.description = $('#description').val();
                 obj.name = $('#name').val();
                 obj.active = $('#active').val();
 
-                _RoleDAO.create(obj).then(result => {
+                _dao.create(obj).then(result => {
                     printSuccessAlert(' Document created successfully.');
                     document.getElementById("closeModal").click();
                     console.log(`Id of rol => ${result.id}`);
@@ -121,7 +121,7 @@ $(() => {
         if (_isUserAuthenticated) {
             var id = $(this).data("id");
             if (id) {
-                _RoleDAO.getById(id).then(result => {
+                _dao.getById(id).then(result => {
                     var doc = result.data();
                     console.log(doc);
 
@@ -159,7 +159,7 @@ $(() => {
             var id = $('#btnConfirmEdit').data("id");
             if (id) {
 
-                var obj = new Rol();
+                var obj = new TypeService();
                 obj.id = id;
                 obj.name = $('#name').val();
                 
@@ -167,7 +167,7 @@ $(() => {
                 obj.active = isTrueSet;
                 //obj.active = $('#active').val();
 
-                _RoleDAO.update(obj).then(result => {
+                _dao.update(obj).then(result => {
                     printSuccessAlert('Document updated successfully!');
                     console.log('Document updated successfully!', id);
                 }).catch(error => {
@@ -194,8 +194,8 @@ $(() => {
         if (_isUserAuthenticated) {
             var id = $('#btnConfirmDelete').data("id");
             if (id) {
-                //_RoleDAO.delete(id).then(result => {
-                _RoleDAO.deactivate(id).then(result => {
+                //_dao.delete(id).then(result => {
+                _dao.deactivate(id).then(result => {
                     printSuccessAlert('Document successfully deleted!');
                     console.log('Document successfully deleted! ', result);
                 }).catch(error => {

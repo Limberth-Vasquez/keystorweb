@@ -6,9 +6,9 @@ $(() => {
     isUserAuthenticated();
     //START
 
-    $("#btnLogout").click(() => {
+    $(document).on("click", ".btnLogout", function (event) {
         _index.signOut();
-        window.location.replace("auth-signin.html");
+        window.location.replace("../auth-signin.html");
     });
     /*****************************************************************************************************/
     function isUserAuthenticated() {
@@ -32,7 +32,7 @@ $(() => {
                 printWarningAlert(' Error you must be authenticated.');
                 //document.getElementById("closeModal").click();
                 _index.signOut();
-                window.location.replace("auth-signin.html");
+                window.location.replace("../auth-signin.html");
             }
             console.log(user);
         });

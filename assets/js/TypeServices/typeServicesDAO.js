@@ -1,6 +1,6 @@
-class RolesDAO extends DAO {
+class TypesServicesDAO extends DAO {
     constructor() {
-        super('Roles');
+        super('TypeServices');
     }
 
      loadUserLogin(user) {

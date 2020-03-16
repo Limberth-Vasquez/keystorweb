@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Keystor - Type Services</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="Limberth Vasquez" content="Keystor" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="../assets/images/ic_launcher-web.png" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="../assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <!-- animation css -->
+    <link rel="stylesheet" href="../assets/plugins/animation/css/animate.min.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
+    <script src="../assets/plugins/jquery/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" />
+</head>
+
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar" id="leftMenuSection">
+        <!--  generate in js -->
+    </nav>
+    <!-- [ navigation menu ] end -->
+
+    <!-- [ Header ] start -->
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light border-bottom shadow-sm" id="headerSection">
+        <!--  generate in js -->
+    </header>
+    <!-- [ Header ] end -->
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="CreateModalLabel">Create Type Service</h5>
+                        <h5 class="modal-title" id="EditModalLabel" style="display: none;">Edit Type Service</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="FormId">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Name*:</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Active:</label>
+                                <select id="active" size="1" class="form-control">
+                                  <option value="true">Activate</option>
+                                  <option value="false">Deactivate</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="active"> -->
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmSave">Save</button>
+                        <button type="button" class="btn btn-primary" id="btnConfirmEdit" style="display: none;">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            id="btnCloseDeleteModal">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel" style="position: absolute;">Confirm Delete</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>You are about to delete one registry, this procedure is irreversible.</p>
+                        <p>Do you want to proceed?</p>
+                        <p class="debug-url"></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            id="btnCancelDelete">Cancel</button>
+                        <a class="btn btn-danger btn-ok" id="btnConfirmDelete">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] start -->
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="alert alert-success alert-dismissible" style="display: none;" id="successAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> The instance was created-edited.
+                    </div>
+                    <div class="alert alert-info alert-dismissible " style="display: none;" id="infoAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+                    </div>
+                    <div class="alert alert-warning alert-dismissible " style="display: none;" id="warningAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+                    </div>
+                    <div class="alert alert-danger alert-dismissible " style="display: none;" id="dangerAlert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative
+                        action.
+                    </div>
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Type Services</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html"><i
+                                                    class="feather icon-home"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Type Services</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- [ Hover-table ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Type Services Manager</h5>
+                                <button id="btnOpenModal" data-toggle="modal" data-target="#myModal" type="button"
+                                    class="btn btn-outline-primary" style="float: right;" title="AddType Service"
+                                    data-toggle="tooltip">Add</button>
+                            </div>
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table id="tableComplete" class="table table-hover footable toggle-circle-filled">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th>#</th> -->
+                                                <th><span>Name</span></th>
+                                                <th><span>Active</span></th>
+                                                <th><span>Actions</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            <!--  generate in js -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Hover-table ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </section>
+
+    <!-- [ Main Content ] end -->
+
+    <!-- Warning Section Ends -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/js/config/ConfigFirebase.js"></script>
+    <script src="../assets/js/Firebase.js"></script>
+    <!-- Required Js -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+               https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
+
+    <script src="../assets/js/TypeServices/typeServicesController.js"></script>
+    <script src="../assets/js/DAO.js"></script>
+    <script src="../assets/js/TypeServices/typeServicesDAO.js"></script>
+    <script src="../assets/js/TypeServices/typeServices.js"></script>
+    <script src="../assets/js/util.js"></script>
+
+    <script src="../assets/js/vendor-all.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/pcoded.min.js"></script>
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script> -->
+    <script defer src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+
+    <!-- <script defer src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <script defer src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</body>
+
+</html>

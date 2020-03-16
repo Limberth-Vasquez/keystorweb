@@ -7,7 +7,7 @@ dangerAlert =
     '<strong>Danger!</strong> ';
 warningAlert =
     '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-    '<strong>Danger!</strong> ';
+    '<strong>Warning!</strong> ';
 /*****************************************************************************************************/
 function printSuccessAlert(msg) {
     document.getElementById("successAlert").innerHTML = (successAlert + msg);
@@ -134,7 +134,7 @@ $(document).ready(function () {
                             <div class="pro-head">
                                 <!-- <img src="../assets/images/ic_launcher-web.png" class="img-radius" alt="User-Profile-Image"> -->
                                 <span id="userLoginName2"></span>
-                                <a href="" class="dud-logout" title="Logout" id="btnLogout">
+                                <a href="" class="dud-logout btnLogout" title="Logout" id="btnLogout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
@@ -164,14 +164,17 @@ $(document).ready(function () {
                         <!-- <label style="font-size: 12px;"><img src="../assets/images/ic_launcher-web.png" class="circle mr-3 image-responsive" width="55px" height="55px">Limberth Vasquez</label> -->
                         <label style="font-size: 12px;" id="userLoginName"></label>
                     </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
                     <li data-username="dashboard" class="nav-item ">
                         <a href="index.html" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>              
+                   
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Forms & tables</label>
                     </li>
-                
-                    <!-- <li class="nav-item pcoded-menu-caption">
-                        <label>Users</label>
-                    </li> -->
                     <!-- <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe"
                         class="nav-item pcoded-hasmenu">
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i
@@ -182,18 +185,7 @@ $(document).ready(function () {
                             <li class=""><a href="../auth-signin.html" class="" target="_blank">Sign in</a></li>
                         </ul>
                     </li> -->
-                    <li data-username="Users" class="nav-item pcoded-hasmenu">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-user"></i></span>
-                            <span class="pcoded-mtext">Users</span>
-                        </a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="useradvertiser.html" class="" >Adveriser Users</a></li>
-                            <li class=""><a href="userclient.html" class="" >Client Users</a></li>
-                            <li class=""><a href="userevent.html" class="" >Event Users</a></li>
-                            <li class=""><a href="userowner.html" class="" >Warehouse Users</a></li>
-                        </ul>
-                    </li>
+                    
                     <!-- <li data-username="Services" class="nav-item pcoded-hasmenu">
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-more-horizontal"></i></span><span class="pcoded-mtext">Services</span></a>
                         <ul class="pcoded-submenu">
@@ -231,9 +223,6 @@ $(document).ready(function () {
                                     class="feather icon-map-pin"></i></span><span class="pcoded-mtext">Locations</span>
                         </a>
                     </li>
-                    <!-- <li class="nav-item pcoded-menu-caption">
-                        <label>Lista 3</label>
-                    </li> -->
                     <li data-username="Roles" class="nav-item">
                         <a href="roles.html" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-server"></i></span>
@@ -246,10 +235,73 @@ $(document).ready(function () {
                             <span class="pcoded-mtext">Type Services</span>
                         </a>
                     </li>
-                    <li data-username="Configurations" class="nav-item">
-                        <a href="configurations.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-settings"></i>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Users</label>
+                    </li> 
+                    <!--<li data-username="Users" class="nav-item pcoded-hasmenu">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-user"></i></span>
+                            <span class="pcoded-mtext">Users</span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="useradvertiser.html" class="" >Advertiser Users</a></li>
+                            <li class=""><a href="userclient.html" class="" >Client Users</a></li>
+                            <li class=""><a href="userevent.html" class="" >Event Users</a></li>
+                            <li class=""><a href="userowner.html" class="" >Warehouse Users</a></li>
+                        </ul>
+                    </li>-->
+                    
+                    <li data-username="Users Advertiser" class="nav-item">
+                        <a href="useradvertiser.html" class="nav-link">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-user"></i>
                             </span>
-                            <span class="pcoded-mtext">Configurations</span>
+                            <span class="pcoded-mtext">Advertiser</span>
+                        </a>
+                    </li>
+                    <li data-username="Users Client" class="nav-item">
+                        <a href="userclient.html" class="nav-link">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-user"></i>
+                            </span>
+                            <span class="pcoded-mtext">Client</span>
+                        </a>
+                    </li>
+                    <li data-username="Users Event" class="nav-item">
+                        <a href="userevent.html" class="nav-link">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-user"></i>
+                            </span>
+                            <span class="pcoded-mtext">Event</span>
+                        </a>
+                    </li>
+                    <li data-username="Users Warehouse" class="nav-item">
+                        <a href="userowner.html" class="nav-link">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-user"></i>
+                            </span>
+                            <span class="pcoded-mtext">Warehouse</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Configurations</label>
+                    </li> 
+                    <li data-username="Configurations FAQ" class="nav-item">
+                        <a href="FAQ.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-book"></i>
+                            </span>
+                            <span class="pcoded-mtext">FAQ</span>
+                        </a>
+                    </li>
+                    <li data-username="Configurations Terms & Conditions" class="nav-item">
+                        <a href="terms&conditions.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-check-square"></i>
+                            </span>
+                            <span class="pcoded-mtext">Terms & Conditions</span>
+                        </a>
+                    </li>
+                    <li data-username="Configurations About us" class="nav-item">
+                        <a href="aboutUs.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-clipboard"></i>
+                            </span>
+                            <span class="pcoded-mtext">About Us</span>
                         </a>
                     </li>
                     <!-- <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled menu</span></a></li> -->

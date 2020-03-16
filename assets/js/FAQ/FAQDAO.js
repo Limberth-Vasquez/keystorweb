@@ -1,6 +1,6 @@
-class RolesDAO extends DAO {
+class FAQDAO extends DAO {
     constructor() {
-        super('Roles');
+        super('FAQ');
     }
 
      loadUserLogin(user) {
@@ -13,13 +13,15 @@ class RolesDAO extends DAO {
         return this.db.collection(this.collection).add({
             active: true,
             deleted: false,
-            name: obj.name
+            question: obj.question,
+            answer: obj.answer
         });
     }
     update(obj) {
         return this.db.collection(this.collection).doc(obj.id).set({
             active: obj.active,
-            name: obj.name
+            question: obj.question,
+            answer: obj.answer
         }, { merge: true });
     }
     deactivate(id){

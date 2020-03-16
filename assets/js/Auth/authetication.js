@@ -8,7 +8,7 @@ class Authentication {
       console.log(result);
       if (result.user.emailVerified) {
         setTimeout(function () {
-          window.location.replace("index.html");
+          window.location.replace("views/index.html");
         }, 4000);
         this.printSuccessAlert('User authenticated successfully.');
       } else {

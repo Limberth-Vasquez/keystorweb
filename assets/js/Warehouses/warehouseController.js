@@ -8,7 +8,7 @@ $(() => {
     isUserAuthenticated();
     //START
     /*****************************************************************************************************/
-    $("#btnLogout").click(() => {
+    $(document).on("click", ".btnLogout", function (event) {
         _WarehouseDAO.signOut();
         window.location.replace("auth-signin.html");
     });

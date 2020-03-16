@@ -17,11 +17,11 @@ class DAO {
         return this.db.collection(this.collection).doc(id).get();
     }
     getAll() {
-        return this.db.collection(this.collection).where("active", "==", true);
+        return this.db.collection(this.collection).where("deleted", "==", false);
     }
     deactivate(id){
         return this.db.collection(this.collection).doc(id).set({
-            active: false
+            deleted: true
         }, { merge: true });
     }
 }

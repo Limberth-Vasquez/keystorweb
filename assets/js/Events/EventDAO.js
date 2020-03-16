@@ -1,13 +1,9 @@
-class WarehouseDAO extends DAO {
+class EventDAO extends DAO {
     constructor() {
-        super('Warehouses');
-        // this.auth = firebase.auth();
-        // this.db = firebase.firestore();
-        // this.collection = 'Warehouses';
+        super('Events');
     }
 
      loadUserLogin(user) {
-        //return this.auth.onAuthStateChanged(user);
         return super.loadUserLogin(user);
     }
     signOut(){
@@ -63,15 +59,12 @@ class WarehouseDAO extends DAO {
         return super.deactivate(id);
     }
     delete(id) {
-        //return this.db.collection(this.collection).doc(id).delete();
         return super.delete(id);
     }
     getById(id) {
-        //return this.db.collection(this.collection).doc(id).get();
         return super.getById(id);
     }
     getAll() {
-        //return this.db.collection(this.collection);
         return super.getAll();
     } 
 }

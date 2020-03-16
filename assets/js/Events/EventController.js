@@ -2,45 +2,56 @@ $(() => {
     $(document).ready(function () {
     });
     //START
-    const _RoleDAO = new RolesDAO();
+    const _dao = new EventDAO();
     var _isUserAuthenticated = false;
     var _isEditing = false;
     isUserAuthenticated();
     //START
     /*****************************************************************************************************/
     $(document).on("click", ".btnLogout", function (event) {
-        _RoleDAO.signOut();
+        _dao.signOut();
         window.location.replace("auth-signin.html");
     });
     /*****************************************************************************************************/
     function loadAll() {
-        _RoleDAO.getAll().onSnapshot(querySnapshot => {
+        _dao.getAll().onSnapshot(querySnapshot => {
             if (querySnapshot.empty) {
+                //$('#objs').append(this.obtenerTemplatePostVacio())
                 printWarningAlert(' Not results found.');
-                $('#tbody').empty();
-            } else {
+            }
+            else {
                 querySnapshot.forEach(result => {
                     //console.log(result.data());
                     $('#tbody').empty();
+                    //printSuccessAlert(' The results loaded successfully.');
                     querySnapshot.forEach(row => {
-                        //console.log(row);
                         let rowHtml = getRowTempate(
                             row.id,
                             row.data().name,
-                            row.data().active,
+                            row.data().Lat,
+                            row.data().Lng,
+                            row.data().address,
+                            row.data().imageUrl,
+                            row.data().description
                         );
                         $('#tbody').append(rowHtml)
                     })
+
                     $('#tableComplete').DataTable();
+
                 })
             }
         });
     }
     /*****************************************************************************************************/
-    function getRowTempate(id, name, active) {
+    function getRowTempate(id, name, latitude, longitude, address, imageUrl, descripcion) {
         return `<tr>
                     <td>'${name}'</td>
-                    <td>'${active}'</td>
+                    <td>'${latitude}'</td>
+                    <td>'${longitude}'</td>
+                    <td>'${address}'</td>
+                    <!--<td>'${imageUrl}'</td>-->
+                    <!--<td>'${descripcion}'</td>-->
                     <td>
                         <ul class="breadcrumb" style="background: none; padding: 0px;">
                             <li class="breadcrumb-item"><a href="#" class="feather icon-edit-2 btnEditRow" title="Edit" data-id="${id}"></a></li>
@@ -51,7 +62,7 @@ $(() => {
     }
     /*****************************************************************************************************/
     function isUserAuthenticated() {
-        _RoleDAO.loadUserLogin(function (user) {
+        _dao.loadUserLogin(function (user) {
             if (user) {
                 // User is signed in.
                 if (user.photoURL != null && user.displayName != null) {
@@ -67,9 +78,9 @@ $(() => {
             } else {
                 // No user is signed in.
                 _isUserAuthenticated = false;
-                printWarningAlert(' To create the document you must be authenticated.');
+                printWarningAlert(' To create you must be authenticated.');
                 document.getElementById("closeModal").click();
-                _RoleDAO.signOut();
+                _dao.signOut();
                 window.location.replace("../auth-signin.html");
             }
             console.log(user);
@@ -77,10 +88,22 @@ $(() => {
     }
     /*****************************************************************************************************/
     function invalidInputForm() {
-        /*if ($('#active').val() == '') {
+        if ($('#description').val() == '') {
             return true;
-        }*/
+        }
         if ($('#name').val() == '') {
+            return true;
+        }
+        if ($('#Latitud').val() == '') {
+            return true;
+        }
+        if ($('#Longitud').val() == '') {
+            return true;
+        }
+        if ($('#Address').val() == '') {
+            return true;
+        }
+        if ($('#imgUrl').val() == '') {
             return true;
         }
         return false;
@@ -89,22 +112,24 @@ $(() => {
     $("#btnConfirmSave").click(() => {
         if (_isUserAuthenticated) {
             if (!invalidInputForm()) {
-                var obj = new Rol();
+                var obj = new Event();
                 obj.description = $('#description').val();
                 obj.name = $('#name').val();
-                obj.active = $('#active').val();
+                obj.Lat = $('#Latitud').val();
+                obj.Lng = $('#Longitud').val();
+                obj.address = $('#Address').val();
+                obj.imageUrl = $('#imgUrl').val();
 
-                _RoleDAO.create(obj).then(result => {
+                _dao.create(obj).then(result => {
                     printSuccessAlert(' Document created successfully.');
                     document.getElementById("closeModal").click();
-                    console.log(`Id of rol => ${result.id}`);
+                    console.log(`Id of obj => ${result.id}`);
                 }).catch(err => {
                     printDangerAlert('Error creating document: ' + err.message);
                     console.log('Error creating document: ', err.message);
                 });
             } else {
                 printWarningAlert(' You must complete the required fields.');
-                document.getElementById("closeModal").click();
             }
         }
     });
@@ -121,26 +146,27 @@ $(() => {
         if (_isUserAuthenticated) {
             var id = $(this).data("id");
             if (id) {
-                _RoleDAO.getById(id).then(result => {
+                _dao.getById(id).then(result => {
                     var doc = result.data();
                     console.log(doc);
 
                     $('#btnConfirmEdit').attr('data-id', id);
                     $('#btnConfirmEdit').data("id", id);
-                    // console.log($('#btnConfirmEdit').data("id"));
-                    // console.log(id);
+                    //console.log($('#btnConfirmEdit').data("id"));
 
                     $('#btnOpenModal').click();
+                    $('#description').val(doc.description);
                     $('#name').val(doc.name);
-                    $('#active').val(doc.active.toString());
-
+                    $('#Latitud').val(doc.Lat);
+                    $('#Longitud').val(doc.Lng);
+                    $('#Address').val(doc.address);
+                    $('#imgUrl').val(doc.imageUrl);
                     //printSuccessAlert('Document retrieved successfully!');
                     $("#CreateModalLabel").css("display", "none");
                     $("#EditModalLabel").css("display", "block");
                     $("#btnConfirmSave").css("display", "none");
                     $("#btnConfirmEdit").css("display", "block");
 
-                    
                 }).catch(err => {
                     printDangerAlert('Error retrieving document: ' + err.message);
                     document.getElementById("closeModal").click();
@@ -159,17 +185,18 @@ $(() => {
             var id = $('#btnConfirmEdit').data("id");
             if (id) {
 
-                var obj = new Rol();
+                var obj = new Event();
                 obj.id = id;
+                obj.description = $('#description').val();
                 obj.name = $('#name').val();
-                
-                var isTrueSet = ($('#active').val() === 'true');
-                obj.active = isTrueSet;
-                //obj.active = $('#active').val();
+                obj.Lat = $('#Latitud').val();
+                obj.Lng = $('#Longitud').val();
+                obj.address = $('#Address').val();
+                obj.imageUrl = $('#imgUrl').val();
 
-                _RoleDAO.update(obj).then(result => {
+                _dao.update(obj).then(result => {
                     printSuccessAlert('Document updated successfully!');
-                    console.log('Document updated successfully!', id);
+                    console.log('Document updated successfully!', result);
                 }).catch(error => {
                     printDangerAlert('Error updating document: ' + error.message);
                     console.error('Error updating document: ', error);
@@ -194,8 +221,7 @@ $(() => {
         if (_isUserAuthenticated) {
             var id = $('#btnConfirmDelete').data("id");
             if (id) {
-                //_RoleDAO.delete(id).then(result => {
-                _RoleDAO.deactivate(id).then(result => {
+                _dao.delete(id).then(result => {
                     printSuccessAlert('Document successfully deleted!');
                     console.log('Document successfully deleted! ', result);
                 }).catch(error => {
