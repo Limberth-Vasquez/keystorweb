@@ -1,38 +1,47 @@
 $(() => {
-    //START
-    const _landing = new LandingDAO();
-    getAboutUs();
-    //getFAQs();
-    //START
+  //START
+  const _landing = new LandingDAO();
+  getAboutUs();
+  getFAQs();
+  //START
 
-    /*****************************************************************************************************/
-    function getAboutUs() {
-        _landing.getAboutUs().onSnapshot(querySnapshot => {
-            if (!querySnapshot.empty) {
-                querySnapshot.forEach(result => {
-                    $('#about').empty();
-                    querySnapshot.forEach(row => {
-                        let rowHtml = getAboutUsTempate(
-                            row.data().description
-                        );
-                        $('#about').append(rowHtml)
-                    });
-                });
-            }
+  /*****************************************************************************************************/
+  function getAboutUs() {
+    _landing.getAboutUs().onSnapshot(querySnapshot => {
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach(result => {
+          $('#about').empty();
+          querySnapshot.forEach(row => {
+            let rowHtml = getAboutUsTemplate(
+              row.data().description
+            );
+            $('#about').append(rowHtml)
+          });
         });
-    }
-    /*****************************************************************************************************/
-    function getFAQs() {
-        _landing.getFAQs().then(() => {
-
-        }).catch(err => {
-            //printDangerAlert('Error retrieving FAQs data: ' + err.message);
-            console.log('Error retrieving FAQs data: ', err.message);
+      }
+    });
+  }
+  /*****************************************************************************************************/
+  function getFAQs() {
+    _landing.getFAQs().onSnapshot(querySnapshot => {
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach(result => {
+          $('#faq-list').empty();
+          querySnapshot.forEach(row => {
+            let rowHtml = getFAQTemplate(
+              row.id,
+              row.data().question,
+              row.data().answer
+            );
+            $('#faq-list').append(rowHtml)
+          });
         });
-    }
-    /*****************************************************************************************************/
-    function getAboutUsTempate(descripcion) {
-        return ` <div class="container-fluid">
+      }
+    });
+  }
+  /*****************************************************************************************************/
+  function getAboutUsTemplate(descripcion) {
+    return ` <div class="container-fluid">
         <div class="section-header">
           <h3 class="section-title">About Us</h3>
           <span class="section-divider"></span>
@@ -66,9 +75,21 @@ $(() => {
         </div>
 
       </div>`;
-    }
-    /*****************************************************************************************************/
-    /*****************************************************************************************************/
-    /*****************************************************************************************************/
+  }
+  /*****************************************************************************************************/
+  function getFAQTemplate(id, question, answer) {
+    return `<li>
+              <a data-toggle="collapse" class="collapsed" href="#faq${id}">
+                ${question} <i class="ion-android-remove"></i>
+              </a>
+              <div id="faq${id}" class="collapse" data-parent="#faq-list">
+                <p> 
+                  ${answer} 
+                </p>
+              </div>
+            </li>`;
+  }
+  /*****************************************************************************************************/
+  /*****************************************************************************************************/
 
 });

@@ -12,7 +12,7 @@ $(() => {
 
     function logOut(){
         _index.signOut().then(() => {
-            window.location.replace("../index.html");
+            window.location.replace("../keystor.html");
         });
         //window.location.replace("auth-signin.html");
     }

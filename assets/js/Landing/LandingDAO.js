@@ -1,7 +1,7 @@
 class LandingDAO {
     constructor() {
         //super('LandingPage');
-        this.auth = firebase.auth();
+        //this.auth = firebase.auth();
         this.db = firebase.firestore();
     }
 

@@ -198,7 +198,7 @@ $(document).ready(function () {
                         <label>Lista 2</label>
                     </li> -->
                     <li data-username="Contracts" class="nav-item">
-                        <a href="contracts.html" class="nav-link "><span class="pcoded-micon"><i
+                        <a href="underConstruction.html" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Contracts</span>
                         </a>
                     </li>
@@ -214,12 +214,12 @@ $(document).ready(function () {
                         </a>
                     </li>
                     <li data-username="Publicities" class="nav-item">
-                        <a href="publicities.html" class="nav-link "><span class="pcoded-micon"><i
+                        <a href="underConstruction.html" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-mail"></i></span><span class="pcoded-mtext">Publicities</span>
                         </a>
                     </li>
                     <li data-username="Locations" class="nav-item">
-                        <a href="locations.html" class="nav-link "><span class="pcoded-micon"><i
+                        <a href="underConstruction.html" class="nav-link "><span class="pcoded-micon"><i
                                     class="feather icon-map-pin"></i></span><span class="pcoded-mtext">Locations</span>
                         </a>
                     </li>
@@ -252,7 +252,7 @@ $(document).ready(function () {
                     </li>-->
                     
                     <li data-username="Users Advertiser" class="nav-item">
-                        <a href="useradvertiser.html" class="nav-link">
+                        <a href="underConstruction.html" class="nav-link">
                             <span class="pcoded-micon">
                                 <i class="feather icon-user"></i>
                             </span>
@@ -260,7 +260,7 @@ $(document).ready(function () {
                         </a>
                     </li>
                     <li data-username="Users Client" class="nav-item">
-                        <a href="userclient.html" class="nav-link">
+                        <a href="underConstruction.html" class="nav-link">
                             <span class="pcoded-micon">
                                 <i class="feather icon-user"></i>
                             </span>
@@ -268,7 +268,7 @@ $(document).ready(function () {
                         </a>
                     </li>
                     <li data-username="Users Event" class="nav-item">
-                        <a href="userevent.html" class="nav-link">
+                        <a href="underConstruction.html" class="nav-link">
                             <span class="pcoded-micon">
                                 <i class="feather icon-user"></i>
                             </span>
@@ -276,7 +276,7 @@ $(document).ready(function () {
                         </a>
                     </li>
                     <li data-username="Users Warehouse" class="nav-item">
-                        <a href="userowner.html" class="nav-link">
+                        <a href="underConstruction.html" class="nav-link">
                             <span class="pcoded-micon">
                                 <i class="feather icon-user"></i>
                             </span>
