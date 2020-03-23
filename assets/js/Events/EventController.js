@@ -9,30 +9,39 @@ $(() => {
     //START
     /*****************************************************************************************************/
     $(document).on("click", ".btnLogout", function (event) {
-        _dao.signOut();
-        window.location.replace("auth-signin.html");
+        logOut();
     });
+
+    function logOut(){
+        _dao.signOut().then(() => {
+            window.location.replace("../index.html");
+        });
+        //window.location.replace("auth-signin.html");
+    }
     /*****************************************************************************************************/
     function loadAll() {
         _dao.getAll().onSnapshot(querySnapshot => {
             if (querySnapshot.empty) {
-                //$('#objs').append(this.obtenerTemplatePostVacio())
                 printWarningAlert(' Not results found.');
             }
             else {
                 querySnapshot.forEach(result => {
-                    //console.log(result.data());
                     $('#tbody').empty();
-                    //printSuccessAlert(' The results loaded successfully.');
                     querySnapshot.forEach(row => {
                         let rowHtml = getRowTempate(
                             row.id,
                             row.data().name,
+                            row.data().email,
+                            row.data().phone,
                             row.data().Lat,
                             row.data().Lng,
                             row.data().address,
                             row.data().imageUrl,
-                            row.data().description
+                            row.data().description,
+                            row.data().fees1,
+                            row.data().fees2,
+                            row.data().fees3,
+                            row.data().active
                         );
                         $('#tbody').append(rowHtml)
                     })
@@ -44,12 +53,18 @@ $(() => {
         });
     }
     /*****************************************************************************************************/
-    function getRowTempate(id, name, latitude, longitude, address, imageUrl, descripcion) {
+    function getRowTempate(id, name, email, phone, latitude, longitude, address, imageUrl, descripcion, fees1, fees2, fees3,active) {
         return `<tr>
                     <td>'${name}'</td>
+                    <td>'${email}'</td>
+                    <td>'${phone}'</td>
                     <td>'${latitude}'</td>
                     <td>'${longitude}'</td>
                     <td>'${address}'</td>
+                    <td>'${fees1}'</td>
+                    <td>'${fees2}'</td>
+                    <td>'${fees3}'</td>
+                    <td>'${active}'</td>
                     <!--<td>'${imageUrl}'</td>-->
                     <!--<td>'${descripcion}'</td>-->
                     <td>
@@ -80,8 +95,7 @@ $(() => {
                 _isUserAuthenticated = false;
                 printWarningAlert(' To create you must be authenticated.');
                 document.getElementById("closeModal").click();
-                _dao.signOut();
-                window.location.replace("../auth-signin.html");
+                logOut();
             }
             console.log(user);
         });
@@ -120,6 +134,12 @@ $(() => {
                 obj.address = $('#Address').val();
                 obj.imageUrl = $('#imgUrl').val();
 
+                obj.email = $('#email').val();
+                obj.phone = $('#phone').val();
+                obj.fees1 = $('#fees1').val();
+                obj.fees2 = $('#fees2').val();
+                obj.fees3 = $('#fees3').val();
+
                 _dao.create(obj).then(result => {
                     printSuccessAlert(' Document created successfully.');
                     document.getElementById("closeModal").click();
@@ -136,6 +156,7 @@ $(() => {
     /*****************************************************************************************************/
     $('#btnOpenModal').click(() => {
         $("#FormId").trigger('reset');
+        $("#FormId2").trigger('reset');
         $("#CreateModalLabel").css("display", "block");
         $("#EditModalLabel").css("display", "none");
         $("#btnConfirmSave").css("display", "block");
@@ -161,6 +182,15 @@ $(() => {
                     $('#Longitud').val(doc.Lng);
                     $('#Address').val(doc.address);
                     $('#imgUrl').val(doc.imageUrl);
+
+
+
+                    $('#email').val(doc.email);
+                    $('#phone').val(doc.phone);
+                    $('#fees1').val(doc.fees1);
+                    $('#fees2').val(doc.fees2);
+                    $('#fees3').val(doc.fees3);
+                    $('#active').val(doc.active.toString());
                     //printSuccessAlert('Document retrieved successfully!');
                     $("#CreateModalLabel").css("display", "none");
                     $("#EditModalLabel").css("display", "block");
@@ -193,6 +223,16 @@ $(() => {
                 obj.Lng = $('#Longitud').val();
                 obj.address = $('#Address').val();
                 obj.imageUrl = $('#imgUrl').val();
+
+
+                obj.email = $('#email').val();
+                obj.phone = $('#phone').val();
+                obj.fees1 = $('#fees1').val();
+                obj.fees2 = $('#fees2').val();
+                obj.fees3 = $('#fees3').val();
+
+                var isTrueSet = ($('#active').val() === 'true');
+                obj.active = isTrueSet;
 
                 _dao.update(obj).then(result => {
                     printSuccessAlert('Document updated successfully!');

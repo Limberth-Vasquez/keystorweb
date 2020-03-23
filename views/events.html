@@ -63,32 +63,79 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="FormId">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Name:</label>
-                                <input type="text" class="form-control" id="name">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form id="FormId">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Name:</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" placeholder="Enter email" id="email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your
+                                            email with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Phone">Phone</label>
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Latitude:</label>
+                                        <input type="text" class="form-control" id="Latitud">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Longitude:</label>
+                                        <input type="text" class="form-control" id="Longitud">
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Date:</label>
+                                        <input type="date" class="form-control" id="Date">
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Image URL:</label>
+                                        <input type="text" class="form-control" id="imgUrl">
+                                    </div>
+                                    <!-- <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button> -->
+
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Latitude:</label>
-                                <input type="text" class="form-control" id="Latitud">
+                            <div class="col-md-6">
+                                <form id="FormId2">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Address:</label>
+                                        <input type="text" class="form-control" id="Address" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Fees 1:</label>
+                                        <input type="text" class="form-control" id="fees1" placeholder="Fees 1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Fees 2:</label>
+                                        <input type="text" class="form-control" id="fees2" placeholder="Fees 2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Fees 3:</label>
+                                        <input type="text" class="form-control" id="fees3" placeholder="Fees 3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Active:</label>
+                                        <select id="active" size="1" class="form-control">
+                                            <option value="true">Activate</option>
+                                            <option value="false">Deactivate</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <textarea class="form-control" id="description"></textarea>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Longitude:</label>
-                                <input type="text" class="form-control" id="Longitud">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Address:</label>
-                                <input type="text" class="form-control" id="Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Image URL:</label>
-                                <input type="text" class="form-control" id="imgUrl">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Description:</label>
-                                <textarea class="form-control" id="description"></textarea>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
@@ -191,10 +238,10 @@
                                                 <th><span>Latitude</span></th>
                                                 <th><span>Longitude</span></th>
                                                 <th><span>Address</span></th>
-                                                <th><span>Country</span></th>
                                                 <th><span>Fees 1</span></th>
                                                 <th><span>Fees 2</span></th>
                                                 <th><span>Fees 3</span></th>
+                                                <th><span>Active</span></th>
                                                 <!-- <th><span>Image URL</span></th> -->
                                                 <!-- <th><span>Description</span></th> -->
                                                 <th><span>Actions</span></th>
@@ -253,4 +300,5 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <!-- <script src="/__/firebase/7.8.1/firebase-app.js"></script> -->
 </body>
+
 </html>

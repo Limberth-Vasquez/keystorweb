@@ -5,11 +5,17 @@ $(() => {
     var _isEditing = false;
     isUserAuthenticated();
     //START
-
+    /*****************************************************************************************************/
     $(document).on("click", ".btnLogout", function (event) {
-        _index.signOut();
-        window.location.replace("../auth-signin.html");
+        logOut();
     });
+
+    function logOut(){
+        _index.signOut().then(() => {
+            window.location.replace("../index.html");
+        });
+        //window.location.replace("auth-signin.html");
+    }
     /*****************************************************************************************************/
     function isUserAuthenticated() {
         _index.loadUserLogin(function (user) {
@@ -31,7 +37,8 @@ $(() => {
                 _isUserAuthenticated = false;
                 printWarningAlert(' Error you must be authenticated.');
                 //document.getElementById("closeModal").click();
-                _index.signOut();
+                
+                logOut();
                 window.location.replace("../auth-signin.html");
             }
             console.log(user);

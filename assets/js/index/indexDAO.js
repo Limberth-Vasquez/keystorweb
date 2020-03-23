@@ -3,7 +3,7 @@ class IndexDAO extends DAO{
         super('Index');
     }
     signOut(){
-        super.signOut();
+        return super.signOut();
     } 
     loadUserLogin(user) {
         return super.loadUserLogin(user);

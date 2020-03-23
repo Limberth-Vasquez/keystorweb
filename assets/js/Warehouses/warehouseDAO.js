@@ -6,13 +6,13 @@ class WarehouseDAO extends DAO {
         // this.collection = 'Warehouses';
     }
 
-     loadUserLogin(user) {
+    loadUserLogin(user) {
         //return this.auth.onAuthStateChanged(user);
         return super.loadUserLogin(user);
     }
-    signOut(){
-        super.signOut();
-    } 
+    signOut() {
+        return super.signOut();
+    }
     create(warehouse) {
         return this.db.collection(this.collection).add({
             //uid: uid,
@@ -57,9 +57,9 @@ class WarehouseDAO extends DAO {
             fees3: warehouse.fees3,
             country: warehouse.country,
             active: warehouse.active
-        });
+        }, { merge: true });
     }
-    deactivate(id){
+    deactivate(id) {
         return super.deactivate(id);
     }
     delete(id) {
@@ -73,5 +73,5 @@ class WarehouseDAO extends DAO {
     getAll() {
         //return this.db.collection(this.collection);
         return super.getAll();
-    } 
+    }
 }

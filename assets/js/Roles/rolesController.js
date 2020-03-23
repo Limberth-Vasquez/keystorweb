@@ -9,9 +9,15 @@ $(() => {
     //START
     /*****************************************************************************************************/
     $(document).on("click", ".btnLogout", function (event) {
-        _RoleDAO.signOut();
-        window.location.replace("auth-signin.html");
+        logOut();
     });
+
+    function logOut() {
+        _RoleDAO.signOut().then(() => {
+            window.location.replace("../index.html");
+        });
+        //window.location.replace("auth-signin.html");
+    }
     /*****************************************************************************************************/
     function loadAll() {
         _RoleDAO.getAll().onSnapshot(querySnapshot => {
@@ -69,7 +75,7 @@ $(() => {
                 _isUserAuthenticated = false;
                 printWarningAlert(' To create the document you must be authenticated.');
                 document.getElementById("closeModal").click();
-                _RoleDAO.signOut();
+                logOut();
                 window.location.replace("../auth-signin.html");
             }
             console.log(user);
@@ -140,7 +146,7 @@ $(() => {
                     $("#btnConfirmSave").css("display", "none");
                     $("#btnConfirmEdit").css("display", "block");
 
-                    
+
                 }).catch(err => {
                     printDangerAlert('Error retrieving document: ' + err.message);
                     document.getElementById("closeModal").click();
@@ -162,7 +168,7 @@ $(() => {
                 var obj = new Rol();
                 obj.id = id;
                 obj.name = $('#name').val();
-                
+
                 var isTrueSet = ($('#active').val() === 'true');
                 obj.active = isTrueSet;
                 //obj.active = $('#active').val();

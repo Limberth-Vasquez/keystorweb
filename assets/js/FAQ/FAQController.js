@@ -9,9 +9,15 @@ $(() => {
     //START
     /*****************************************************************************************************/
     $(document).on("click", ".btnLogout", function (event) {
-        _dao.signOut();
-        window.location.replace("auth-signin.html");
+        logOut();
     });
+
+    function logOut(){
+        _dao.signOut().then(() => {
+            window.location.replace("../index.html");
+        });
+        //window.location.replace("auth-signin.html");
+    }
     /*****************************************************************************************************/
     function loadAll() {
         _dao.getAll().onSnapshot(querySnapshot => {
@@ -71,7 +77,7 @@ $(() => {
                 _isUserAuthenticated = false;
                 printWarningAlert(' To create the document you must be authenticated.');
                 document.getElementById("closeModal").click();
-                _dao.signOut();
+                logOut();
                 window.location.replace("../auth-signin.html");
             }
             console.log(user);

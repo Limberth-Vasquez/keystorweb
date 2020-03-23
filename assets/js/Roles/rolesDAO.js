@@ -3,12 +3,12 @@ class RolesDAO extends DAO {
         super('Roles');
     }
 
-     loadUserLogin(user) {
+    loadUserLogin(user) {
         return super.loadUserLogin(user);
     }
-    signOut(){
-        super.signOut();
-    } 
+    signOut() {
+        return super.signOut();
+    }
     create(obj) {
         return this.db.collection(this.collection).add({
             active: true,
@@ -22,7 +22,7 @@ class RolesDAO extends DAO {
             name: obj.name
         }, { merge: true });
     }
-    deactivate(id){
+    deactivate(id) {
         return super.deactivate(id);
     }
     delete(id) {
@@ -33,5 +33,5 @@ class RolesDAO extends DAO {
     }
     getAll() {
         return super.getAll();
-    } 
+    }
 }

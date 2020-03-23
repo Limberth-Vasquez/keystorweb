@@ -3,12 +3,12 @@ class TermsAndConditionDAO extends DAO {
         super('TermsAndCondition');
     }
 
-     loadUserLogin(user) {
+    loadUserLogin(user) {
         return super.loadUserLogin(user);
     }
-    signOut(){
-        super.signOut();
-    } 
+    signOut() {
+        return super.signOut();
+    }
     create(obj) {
         return this.db.collection(this.collection).add({
             active: true,
@@ -24,7 +24,7 @@ class TermsAndConditionDAO extends DAO {
             description: obj.description
         }, { merge: true });
     }
-    deactivate(id){
+    deactivate(id) {
         return super.deactivate(id);
     }
     delete(id) {
@@ -35,5 +35,5 @@ class TermsAndConditionDAO extends DAO {
     }
     getAll() {
         return super.getAll();
-    } 
+    }
 }

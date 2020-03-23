@@ -7,53 +7,43 @@ class EventDAO extends DAO {
         return super.loadUserLogin(user);
     }
     signOut(){
-        super.signOut();
+        return super.signOut();
     } 
-    create(warehouse) {
+    create(obj) {
         return this.db.collection(this.collection).add({
             //uid: uid,
-            Lat: warehouse.Lat,
-            Lng: warehouse.Lng,
-            address: warehouse.address,
-            description: warehouse.description,
-            imageUrl: warehouse.imageUrl,
-            name: warehouse.name,
-            email: warehouse.email,
-            phone: warehouse.phone,
-            warehouseOwner: warehouse.warehouseOwner,
-            timeOpen: warehouse.timeOpen,
-            timeClose: warehouse.timeClose,
-            capacityPerPallet: warehouse.capacityPerPallet,
-            capacityPerSpace: warehouse.capacityPerSpace,
-            fees1: warehouse.fees1,
-            fees2: warehouse.fees2,
-            fees3: warehouse.fees3,
-            country: warehouse.country,
+            Lat: obj.Lat,
+            Lng: obj.Lng,
+            address: obj.address,
+            description: obj.description,
+            imageUrl: obj.imageUrl,
+            name: obj.name,
+            email: obj.email,
+            phone: obj.phone,
+            //objOwner: obj.objOwner,
+            fees1: obj.fees1,
+            fees2: obj.fees2,
+            fees3: obj.fees3,
             active: true,
             deleted: false,
         });
     }
-    update(warehouse) {
-        return this.db.collection(this.collection).doc(warehouse.id).set({
-            Lat: warehouse.Lat,
-            Lng: warehouse.Lng,
-            address: warehouse.address,
-            description: warehouse.description,
-            imageUrl: warehouse.imageUrl,
-            name: warehouse.name,
-            email: warehouse.email,
-            phone: warehouse.phone,
-            warehouseOwner: warehouse.warehouseOwner,
-            timeOpen: warehouse.timeOpen,
-            timeClose: warehouse.timeClose,
-            capacityPerPallet: warehouse.capacityPerPallet,
-            capacityPerSpace: warehouse.capacityPerSpace,
-            fees1: warehouse.fees1,
-            fees2: warehouse.fees2,
-            fees3: warehouse.fees3,
-            country: warehouse.country,
-            active: warehouse.active
-        });
+    update(obj) {
+        return this.db.collection(this.collection).doc(obj.id).set({
+            Lat: obj.Lat,
+            Lng: obj.Lng,
+            address: obj.address,
+            description: obj.description,
+            imageUrl: obj.imageUrl,
+            name: obj.name,
+            email: obj.email,
+            phone: obj.phone,
+            //objOwner: obj.objOwner,
+            fees1: obj.fees1,
+            fees2: obj.fees2,
+            fees3: obj.fees3,
+            active: obj.active
+        }, { merge: true });
     }
     deactivate(id){
         return super.deactivate(id);

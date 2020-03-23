@@ -3,12 +3,12 @@ class FAQDAO extends DAO {
         super('FAQ');
     }
 
-     loadUserLogin(user) {
+    loadUserLogin(user) {
         return super.loadUserLogin(user);
     }
-    signOut(){
-        super.signOut();
-    } 
+    signOut() {
+        return super.signOut();
+    }
     create(obj) {
         return this.db.collection(this.collection).add({
             active: true,
@@ -24,7 +24,7 @@ class FAQDAO extends DAO {
             answer: obj.answer
         }, { merge: true });
     }
-    deactivate(id){
+    deactivate(id) {
         return super.deactivate(id);
     }
     delete(id) {
@@ -35,5 +35,5 @@ class FAQDAO extends DAO {
     }
     getAll() {
         return super.getAll();
-    } 
+    }
 }

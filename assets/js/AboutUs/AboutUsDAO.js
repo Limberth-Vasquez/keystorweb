@@ -3,12 +3,12 @@ class AboutUsDAO extends DAO {
         super('AboutUs');
     }
 
-     loadUserLogin(user) {
+    loadUserLogin(user) {
         return super.loadUserLogin(user);
     }
-    signOut(){
-        super.signOut();
-    } 
+    signOut() {
+        return super.signOut();
+    }
     create(obj) {
         return this.db.collection(this.collection).add({
             active: true,
@@ -24,7 +24,10 @@ class AboutUsDAO extends DAO {
             description: obj.description
         }, { merge: true });
     }
-    deactivate(id){
+    activeFalseAll(recentId) {
+        return super.activeFalseAll(recentId);
+    }
+    deactivate(id) {
         return super.deactivate(id);
     }
     delete(id) {
@@ -35,5 +38,5 @@ class AboutUsDAO extends DAO {
     }
     getAll() {
         return super.getAll();
-    } 
+    }
 }

@@ -9,9 +9,15 @@ $(() => {
     //START
     /*****************************************************************************************************/
     $(document).on("click", ".btnLogout", function (event) {
-        _WarehouseDAO.signOut();
-        window.location.replace("auth-signin.html");
+        logOut();
     });
+
+    function logOut() {
+        _WarehouseDAO.signOut().then(() => {
+            window.location.replace("../index.html");
+        });
+        //window.location.replace("auth-signin.html");
+    }
     /*****************************************************************************************************/
     function loadAll() {
         _WarehouseDAO.getAll().onSnapshot(querySnapshot => {
@@ -78,7 +84,7 @@ $(() => {
                 _isUserAuthenticated = false;
                 printWarningAlert(' To create the Warehouse you must be authenticated.');
                 document.getElementById("closeModal").click();
-                _WarehouseDAO.signOut();
+                logOut();
                 window.location.replace("../auth-signin.html");
             }
             console.log(user);

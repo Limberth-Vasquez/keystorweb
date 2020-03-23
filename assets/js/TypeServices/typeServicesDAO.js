@@ -7,7 +7,7 @@ class TypesServicesDAO extends DAO {
         return super.loadUserLogin(user);
     }
     signOut(){
-        super.signOut();
+        return super.signOut();
     } 
     create(obj) {
         return this.db.collection(this.collection).add({
