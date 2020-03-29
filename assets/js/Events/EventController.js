@@ -150,6 +150,7 @@ $(() => {
                 });
             } else {
                 printWarningAlert(' You must complete the required fields.');
+                document.getElementById("closeModal").click();
             }
         }
     });
@@ -161,6 +162,9 @@ $(() => {
         $("#EditModalLabel").css("display", "none");
         $("#btnConfirmSave").css("display", "block");
         $("#btnConfirmEdit").css("display", "none");
+        const image = document.querySelector('#image');
+        image.src = '';
+        $('#imgUrl').val('');
     });
     /*****************************************************************************************************/
     $(document).on("click", ".btnEditRow", function (event) {
@@ -182,6 +186,8 @@ $(() => {
                     $('#Longitud').val(doc.Lng);
                     $('#Address').val(doc.address);
                     $('#imgUrl').val(doc.imageUrl);
+                    const image = document.querySelector('#image');
+                    image.src = doc.imageUrl;
 
 
 
@@ -274,5 +280,32 @@ $(() => {
             document.getElementById("btnCloseDeleteModal").click();
         }
     });
+    /*****************************************************************************************************/
+    document.getElementById("imgUrlFile").onchange = function () {
+
+        const file = document.querySelector('#imgUrlFile').files[0];
+        const image = document.querySelector('#image');
+        if (file) {
+            const ref = firebase.storage().ref();
+            //const file = document.querySelector('#imgUrlFile').files[0];
+            const name = new Date() + '-' + file.name;
+
+            const metadata = {
+                contentType: file.type
+            };
+
+            const task = ref.child(name).put(file, metadata)
+
+            task.then(snapshot => snapshot.ref.getDownloadURL()).then(url => {
+                console.log(url);
+                //alert("Image Upload Successful");
+                image.src = url;
+                $('#imgUrl').val(url);
+            });
+        } else {
+            image.src = '';
+            $('#imgUrl').val('');
+        }
+    };
     /*****************************************************************************************************/
 });

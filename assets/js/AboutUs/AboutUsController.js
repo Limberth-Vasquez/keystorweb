@@ -12,7 +12,7 @@ $(() => {
         logOut();
     });
 
-    function logOut(){
+    function logOut() {
         _dao.signOut().then(() => {
             window.location.replace("../keystor.html");
         });
@@ -25,34 +25,29 @@ $(() => {
                 printWarningAlert(' Not results found.');
                 $('#tbody').empty();
             } else {
-                querySnapshot.forEach(result => {
-                    //console.log(result.data());
-                    $('#tbody').empty();
-                    querySnapshot.forEach(row => {
-                        //console.log(row);
-                        let rowHtml = getRowTempate(
-                            row.id,
-                            row.data().title,
-                            row.data().description,
-                            row.data().active,
-                        );
-                        $('#tbody').append(rowHtml)
-                    })
-                    $('#tableComplete').DataTable();
+                $('#tbody').empty();
+                querySnapshot.forEach(row => {
+                    //console.log(row);
+                    let rowHtml = getRowTempate(
+                        row.id,
+                        row.data().descAboutUs1,
+                        row.data().active,
+                    );
+                    $('#tbody').append(rowHtml)
                 })
+                $('#tableComplete').DataTable();
             }
         });
     }
     /*****************************************************************************************************/
-    function getRowTempate(id, title, description, active) {
+    function getRowTempate(id, descAboutUs1, active) {
         return `<tr>
-                    <td>'${title}'</td>
-                    <td>'${description}'</td>
+                    <td>'${descAboutUs1}'</td>
                     <td>'${active}'</td>
                     <td>
                         <ul class="breadcrumb" style="background: none; padding: 0px;">
                             <li class="breadcrumb-item"><a href="#" class="feather icon-edit-2 btnEditRow" title="Edit" data-id="${id}"></a></li>
-                            <li class="breadcrumb-item"><a href="#" class="feather icon-trash-2 btnDeleteRow" title="Delete" data-id="${id}" data-title="${title}" data-toggle="modal" data-target="#confirm-delete"></a></li>
+                            <li class="breadcrumb-item"><a href="#" class="feather icon-trash-2 btnDeleteRow" title="Delete" data-id="${id}" data-title="${descAboutUs1}" data-toggle="modal" data-target="#confirm-delete"></a></li>
                         </ul>
                     </td>
                 </tr>`;
@@ -85,10 +80,25 @@ $(() => {
     }
     /*****************************************************************************************************/
     function invalidInputForm() {
-        if ($('#title').val() == '') {
+        /*if ($('#title').val() == '') {
             return true;
         }
         if ($('#description').val() == '') {
+            return true;
+        }*/
+        if ($('#descAboutUs1').val() == '') {
+            return true;
+        }
+        if ($('#titleh2').val() == '') {
+            return true;
+        }
+        if ($('#titleh3').val() == '') {
+            return true;
+        }
+        if ($('#li1').val() == '') {
+            return true;
+        }
+        if ($('#li2').val() == '') {
             return true;
         }
         return false;
@@ -98,9 +108,16 @@ $(() => {
         if (_isUserAuthenticated) {
             if (!invalidInputForm()) {
                 var obj = new AboutUs();
-                obj.title = $('#title').val();
-                obj.description = $('#description').val();
+                //obj.title = $('#title').val();
+                //obj.description = $('#description').val();
                 obj.active = $('#active').val();
+                obj.descAboutUs1 = $('#descAboutUs1').val();
+                obj.titleh2 = $('#titleh2').val();
+                obj.titleh3 = $('#titleh3').val();
+                obj.shortDescp = $('#shortDescp').val();
+                obj.li1 = $('#li1').val();
+                obj.li2 = $('#li2').val();
+                obj.li3 = $('#li3').val();
 
                 _dao.create(obj).then(result => {
                     _dao.activeFalseAll(result.id);
@@ -140,8 +157,15 @@ $(() => {
                     // console.log(id);
 
                     $('#btnOpenModal').click();
-                    $('#title').val(doc.title);
-                    $('#description').val(doc.description);
+                    //$('#title').val(doc.title);
+                    //$('#description').val(doc.description);
+                    $('#descAboutUs1').val(doc.descAboutUs1);
+                    $('#titleh2').val(doc.titleh2);
+                    $('#titleh3').val(doc.titleh3);
+                    $('#shortDescp').val(doc.shortDescp);
+                    $('#li1').val(doc.li1);
+                    $('#li2').val(doc.li2);
+                    $('#li3').val(doc.li3);
                     $('#active').val(doc.active.toString());
 
                     //printSuccessAlert('Document retrieved successfully!');
@@ -171,13 +195,20 @@ $(() => {
 
                 var obj = new AboutUs();
                 obj.id = id;
-                obj.title = $('#title').val();
-                obj.description = $('#description').val();
+                //obj.title = $('#title').val();
+                //obj.description = $('#description').val();
 
                 var isTrueSet = ($('#active').val() === 'true');
                 obj.active = isTrueSet;
                 //obj.active = $('#active').val();
 
+                obj.descAboutUs1 = $('#descAboutUs1').val();
+                obj.titleh2 = $('#titleh2').val();
+                obj.titleh3 = $('#titleh3').val();
+                obj.shortDescp = $('#shortDescp').val();
+                obj.li1 = $('#li1').val();
+                obj.li2 = $('#li2').val();
+                obj.li3 = $('#li3').val();
                 _dao.update(obj).then(result => {
                     printSuccessAlert('Document updated successfully!');
                     console.log('Document updated successfully!', id);

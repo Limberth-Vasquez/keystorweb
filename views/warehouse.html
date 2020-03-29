@@ -8,7 +8,8 @@
     <meta name="Limberth Vasquez" content="Keystor" />
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../assets/images/ic_launcher-web.png" type="image/x-icon">
+    <!-- <link rel="icon" href="../assets/images/ic_launcher-web.png" type="image/x-icon"> -->
+    <link rel="icon" href="../assets/images/icon_icon.ico" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="../assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -54,7 +55,7 @@
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" style="width: max-content;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="CreateModalLabel">Create Warehouse</h5>
                         <h5 class="modal-title" id="EditModalLabel" style="display: none;">Edit Warehouse</h5>
@@ -63,7 +64,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="FormId">
+                        <!--  <form id="FormId">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Name:</label>
                                 <input type="text" class="form-control" id="name">
@@ -88,7 +89,104 @@
                                 <label for="message-text" class="col-form-label">Description:</label>
                                 <textarea class="form-control" id="description"></textarea>
                             </div>
+                        </form> -->
+                                <form id="FormId">
+                        <div class="row">
+                            <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Name:</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Latitude:</label>
+                                        <input type="number" class="form-control" id="Latitud" placeholder="Latitude">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Longitude:</label>
+                                        <input type="number" class="form-control" id="Longitud" placeholder="Longitude">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Address:</label>
+                                        <input type="text" class="form-control" id="Address" placeholder="Address">
+                                    </div>
+                                    <div class="form-group" hidden>
+                                        <label for="recipient-name" class="col-form-label">Image URL:</label>
+                                        <input type="text" class="form-control" id="imgUrl" placeholder="Image URL">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <textarea class="form-control" id="description"
+                                            placeholder="Description"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Image :</label>
+                                        <!-- <input type="file" class="custom-file-input" id="imgUrlFile" accept="image/*" name="img"> -->
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="imgUrlFile" accept="image/*" name="img" >
+                                            <label class="custom-file-label" for="imgUrlFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                    <img id="image" src="" style="width: 260px; height: 120px; border: 2px dashed;">
+                                <!-- </form> -->
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <form id="FormId2"> -->
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Contact Email:</label>
+                                        <input type="email" class="form-control" id="contactEmail" placeholder="Contact Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Phone:</label>
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">timeOpen:</label>
+                                        <input type="time" class="form-control" id="timeOpen" placeholder="timeOpen">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">timeClose:</label>
+                                        <input type="time" class="form-control" id="timeClose" placeholder="timeClose">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Capacity Per Pallet:</label>
+                                        <input type="text" class="form-control" id="capacityPerPallet"
+                                            placeholder="Capacity Per Pallet">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Capacity Per Space:</label>
+                                        <input type="text" class="form-control" id="capacityPerSpace"
+                                            placeholder="Capacity Per Space">
+                                    </div>
+                                <!-- </form> -->
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <form id="FormId3"> -->
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Fees 1:</label>
+                                        <input type="number" class="form-control" id="fees1" placeholder="Fees 1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Fees 2:</label>
+                                        <input type="number" class="form-control" id="fees2" placeholder="Fees 2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Fees 3:</label>
+                                        <input type="number" class="form-control" id="fees3" placeholder="Fees 3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Active:</label>
+                                        <select id="active" size="1" class="form-control">
+                                            <option value="true">Activate</option>
+                                            <option value="false">Deactivate</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Description:</label>
+                                    <textarea class="form-control" id="description"></textarea>
+                                </div> -->
+                            </div>
                         </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
@@ -260,6 +358,7 @@
     <script src="../assets/js/pcoded.min.js"></script>
     <!-- <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script> -->
     <script defer src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.8.1/firebase-storage.js"></script>
 
     <script defer src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
 
@@ -273,4 +372,5 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <!-- <script src="/__/firebase/7.8.1/firebase-app.js"></script> -->
 </body>
+
 </html>

@@ -21,7 +21,6 @@ $(() => {
     /*****************************************************************************************************/
     function loadAll() {
         _WarehouseDAO.getAll().onSnapshot(querySnapshot => {
-            querySnapshot.forEach(result => {
                 //console.log(result.data());
                 $('#tbody').empty();
                 if (querySnapshot.empty) {
@@ -44,7 +43,6 @@ $(() => {
 
                     $('#tableComplete').DataTable();
                 }
-            })
         });
     }
     /*****************************************************************************************************/
@@ -133,6 +131,18 @@ $(() => {
                 warehouse.address = $('#Address').val();
                 warehouse.imageUrl = $('#imgUrl').val();
 
+                warehouse.contactEmail = $('#contactEmail').val();
+                warehouse.phone = $('#phone').val();
+                //warehouse.warehouseOwner = $('#warehouseOwner').val();
+                warehouse.timeOpen = $('#timeOpen').val();
+                warehouse.timeClose = $('#timeClose').val();
+                warehouse.capacityPerPallet = $('#capacityPerPallet').val();
+                warehouse.capacityPerSpace = $('#capacityPerSpace').val();
+                warehouse.fees1 = $('#fees1').val();
+                warehouse.fees2 = $('#fees2').val();
+                warehouse.fees3 = $('#fees3').val();
+
+
                 _WarehouseDAO.create(warehouse).then(result => {
                     printSuccessAlert(' Warehouse created successfully.');
                     document.getElementById("closeModal").click();
@@ -143,6 +153,7 @@ $(() => {
                 });
             } else {
                 printWarningAlert(' You must complete the required fields.');
+                document.getElementById("closeModal").click();
             }
         }
     });
@@ -153,6 +164,9 @@ $(() => {
         $("#EditModalLabel").css("display", "none");
         $("#btnConfirmSave").css("display", "block");
         $("#btnConfirmEdit").css("display", "none");
+        const image = document.querySelector('#image');
+        image.src = '';
+        $('#imgUrl').val('');
     });
     /*****************************************************************************************************/
     $(document).on("click", ".btnEditRow", function (event) {
@@ -174,6 +188,23 @@ $(() => {
                     $('#Longitud').val(doc.Lng);
                     $('#Address').val(doc.address);
                     $('#imgUrl').val(doc.imageUrl);
+                    //$('#image').src = doc.imageUrl;
+                    const image = document.querySelector('#image');
+                    image.src = doc.imageUrl;
+                    $('#active').val(doc.active.toString());
+
+
+
+                    $('#contactEmail').val(doc.contactEmail);
+                    $('#phone').val(doc.phone);
+                    //$('#warehouseOwner').val(doc.warehouseOwner);
+                    $('#timeOpen').val(doc.timeOpen);
+                    $('#timeClose').val(doc.timeClose);
+                    $('#capacityPerPallet').val(doc.capacityPerPallet);
+                    $('#capacityPerSpace').val(doc.capacityPerSpace);
+                    $('#fees1').val(doc.fees1);
+                    $('#fees2').val(doc.fees2);
+                    $('#fees3').val(doc.fees3);
                     //printSuccessAlert('Document retrieved successfully!');
                     $("#CreateModalLabel").css("display", "none");
                     $("#EditModalLabel").css("display", "block");
@@ -207,6 +238,20 @@ $(() => {
                 warehouse.address = $('#Address').val();
                 warehouse.imageUrl = $('#imgUrl').val();
 
+                var isTrueSet = ($('#active').val() === 'true');
+                warehouse.active = isTrueSet;
+
+                warehouse.contactEmail = $('#contactEmail').val();
+                warehouse.phone = $('#phone').val();
+                //warehouse.warehouseOwner = $('#warehouseOwner').val();
+                warehouse.timeOpen = $('#timeOpen').val();
+                warehouse.timeClose = $('#timeClose').val();
+                warehouse.capacityPerPallet = $('#capacityPerPallet').val();
+                warehouse.capacityPerSpace = $('#capacityPerSpace').val();
+                warehouse.fees1 = $('#fees1').val();
+                warehouse.fees2 = $('#fees2').val();
+                warehouse.fees3 = $('#fees3').val();
+
                 _WarehouseDAO.update(warehouse).then(result => {
                     printSuccessAlert('Document updated successfully!');
                     console.log('Document updated successfully!', result);
@@ -234,7 +279,8 @@ $(() => {
         if (_isUserAuthenticated) {
             var id = $('#btnConfirmDelete').data("id");
             if (id) {
-                _WarehouseDAO.delete(id).then(result => {
+                //_WarehouseDAO.delete(id).then(result => {
+                _WarehouseDAO.deactivate(id).then(result => {
                     printSuccessAlert('Document successfully deleted!');
                     console.log('Document successfully deleted! ', result);
                 }).catch(error => {
@@ -248,9 +294,82 @@ $(() => {
         }
     });
     /*****************************************************************************************************/
-    //$('#confirm-delete').on('show.bs.modal', function(e) {
-    //$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    document.getElementById("imgUrlFile").onchange = function () {
 
-    //$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
-    //});
+        const file = document.querySelector('#imgUrlFile').files[0];
+        const image = document.querySelector('#image');
+        if (file) {
+            const ref = firebase.storage().ref();
+            //const file = document.querySelector('#imgUrlFile').files[0];
+            const name = new Date() + '-' + file.name;
+
+            const metadata = {
+                contentType: file.type
+            };
+
+            const task = ref.child(name).put(file, metadata)
+
+            task.then(snapshot => snapshot.ref.getDownloadURL()).then(url => {
+                console.log(url);
+                //alert("Image Upload Successful");
+                image.src = url;
+                $('#imgUrl').val(url);
+            });
+        } else {
+            image.src = '';
+            $('#imgUrl').val('');
+        }
+    };
+
+    // File or Blob named mountains.jpg
+    /*//var file = document.querySelector('#imgUrlFile')
+
+    // Create the file metadata
+    var metadata = {
+        contentType: 'image/jpeg'
+    };
+    console.log(file);
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        function (snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                //...
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect error.serverResponse
+                    break;
+            }
+        }, function () {
+            // Upload completed successfully, now we can get the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+            });
+        });*/
+    /*****************************************************************************************************/
 });

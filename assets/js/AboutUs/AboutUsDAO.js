@@ -13,15 +13,29 @@ class AboutUsDAO extends DAO {
         return this.db.collection(this.collection).add({
             active: true,
             deleted: false,
-            title: obj.title,
-            description: obj.description
+            //title: obj.title,
+            //description: obj.description
+            descAboutUs1: obj.descAboutUs1,
+            titleh2: obj.titleh2,
+            titleh3: obj.titleh3,
+            shortDescp: obj.shortDescp,
+            li1: obj.li1,
+            li2: obj.li2,
+            li3: obj.li3
         });
     }
     update(obj) {
         return this.db.collection(this.collection).doc(obj.id).set({
             active: obj.active,
-            title: obj.title,
-            description: obj.description
+            //title: obj.title,
+            //description: obj.description
+            descAboutUs1: obj.descAboutUs1,
+            titleh2: obj.titleh2,
+            titleh3: obj.titleh3,
+            shortDescp: obj.shortDescp,
+            li1: obj.li1,
+            li2: obj.li2,
+            li3: obj.li3
         }, { merge: true });
     }
     activeFalseAll(recentId) {
