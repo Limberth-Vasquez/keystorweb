@@ -13,5 +13,6 @@ class User {
         this.rolID = '';
         this.active = '';
         this.keystorApproved = '';
+        this.creationDate = '';
     }
 }

@@ -133,29 +133,68 @@ $(() => {
         return false;
     }
     /*****************************************************************************************************/
+    function createEmailAccount(obj) {
+        _dao.createUserWithEmailAndPassword(obj.email, obj.password).then(result => {
+            console.log(result);
+            result.user.updateProfile({
+                displayName: (obj.name + ' ' + obj.lastName + ' ' + obj.secondLastName)
+            })
+            result.user.sendEmailVerification().catch(error => {
+                console.log(error);
+                this.printDangerAlert(error.message);
+                return;
+            })
+            _dao.create(obj).then(result2 => {
+                printSuccessAlert('User created successfully.');
+                document.getElementById("closeModal").click();
+                console.log(`Id of User => ${result2.id}`);
+            }).catch(err => {
+                printDangerAlert('Error creating User: ' + err.message);
+                console.log('Error creating document: ', err.message);
+            })
+        }).catch(error => {
+            console.log(error);
+            this.printDangerAlert(error.message);
+        });
+    }
+                
+    /*****************************************************************************************************/
     $("#btnConfirmSave").click(() => {
         if (_isUserAuthenticated) {
             if (!invalidInputForm()) {
                 var obj = new User();
                 obj.name = $('#name').val();
+                obj.lastName = $('#lastName').val();
+                obj.secondLastName = $('#secondLastName').val();
                 obj.personalID = $('#personalID').val();
+                obj.password = $('#password').val();
                 obj.email = $('#email').val();
-                obj.phone = $('#phone').val();
-                obj.lat = $('#lat').val();
-                obj.lng = $('#lng').val();
+                obj.phoneNumber = $('#phoneNumber').val();
+                obj.lat = $('#Latitud').val();
+                obj.lng = $('#Longitud').val();
                 obj.rolID = $('#rolID').val();
+
+               
+                 dateObj = new Date();
+                 month = dateObj.getMonth()+1;
+                 day = String(dateObj.getDate()).padStart(2, '0');
+                 year = dateObj.getFullYear();
+                 output = day  + '/'+ month  + '/' + year;
+                //document.getElementById("creationDate").value = output;
+
+                obj.creationDate = output;
                 //obj.creationDate = $('#creationDate').val();
                 //obj.keystorApproved = $('#keystorApproved').val();
                 //obj.active = $('#active').val();
-
-                _dao.create(obj).then(result => {
-                    printSuccessAlert(' Document created successfully.');
+                createEmailAccount(obj);
+                /* _dao.create(obj).then(result2 => {
+                    printSuccessAlert('User created successfully.');
                     document.getElementById("closeModal").click();
-                    console.log(`Id of User => ${result.id}`);
+                    console.log(`Id of User => ${result2.id}`);
                 }).catch(err => {
-                    printDangerAlert('Error creating document: ' + err.message);
+                    printDangerAlert('Error creating User: ' + err.message);
                     console.log('Error creating document: ', err.message);
-                });
+                }) */
             } else {
                 printWarningAlert(' You must complete the required fields.');
                 document.getElementById("closeModal").click();
@@ -183,15 +222,17 @@ $(() => {
                     $('#btnConfirmEdit').data("id", id);
                     // console.log($('#btnConfirmEdit').data("id"));
                     // console.log(id);
-
                     $('#btnOpenModal').click();
                     $('#name').val(doc.name);
+                    $('#lastName').val(doc.lastName);
+                    $('#secondLastName').val(doc.secondLastName);
                     $('#active').val(doc.active.toString());
-                    $('#personalID').val(doc.personalID );
+                    $('#personalID').val(doc.personalID);
+                    $('#password').val(doc.password);
                     $('#email').val(doc.email);
-                    $('#phone').val(doc.phone);
-                    $('#lat').val(doc.lat);
-                    $('#lng').val(doc.lng);
+                    $('#phoneNumber').val(doc.phoneNumber);
+                    $('#Latitud').val(doc.lat);
+                    $('#Longitud').val(doc.lng);
                     $('#rolID').val(doc.rolID);
                     $('#creationDate').val(doc.creationDate);
                     //$('#keystorApproved').val(obj.keystorApproved);
@@ -224,15 +265,18 @@ $(() => {
                 var obj = new User();
                 obj.id = id;
                 obj.name = $('#name').val();
+                obj.lastName = $('#lastName').val();
+                obj.secondLastName = $('#secondLastName').val();
                 obj.personalID = $('#personalID').val();
+                obj.password = $('#password').val();
                 obj.email = $('#email').val();
-                obj.phone = $('#phone').val();
-                obj.lat = $('#lat').val();
-                obj.lng = $('#lng').val();
+                obj.phoneNumber = $('#phoneNumber').val();
+                obj.lat = $('#Latitud').val();
+                obj.lng = $('#Longitud').val();
                 obj.rolID = $('#rolID').val();
                 //obj.creationDate = $('#creationDate').val();
                 //obj.keystorApproved = $('#keystorApproved').val();
-                
+
                 var isTrueSet = ($('#active').val() === 'true');
                 obj.active = isTrueSet;
                 //obj.active = $('#active').val();

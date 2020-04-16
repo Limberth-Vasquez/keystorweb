@@ -3,7 +3,9 @@ class UserDAO extends DAO {
         super('userClients');
         //super('Users');
     }
-
+    createUserWithEmailAndPassword(email, pass) {
+        return this.auth.createUserWithEmailAndPassword(email, pass);
+    }
     loadUserLogin(user) {
         return super.loadUserLogin(user);
     }
@@ -11,7 +13,7 @@ class UserDAO extends DAO {
         return super.signOut();
     }
     create(obj) {
-        return this.db.collection(this.collection).add({              
+        return this.db.collection(this.collection).add({
             //id: obj,
             name: obj.name,
             lastName: obj.lastName,
@@ -19,7 +21,7 @@ class UserDAO extends DAO {
             personalID: obj.personalID,
             password: obj.password,
             email: obj.email,
-            phone: obj.phone,
+            phoneNumber: obj.phoneNumber,
             lat: obj.lat,
             lng: obj.lng,
             rolID: obj.rolID,
@@ -29,14 +31,14 @@ class UserDAO extends DAO {
     }
     update(obj) {
         return this.db.collection(this.collection).doc(obj.id).set({
-            active: obj.active,            
+            active: obj.active,
             name: obj.name,
             lastName: obj.lastName,
             secondLastName: obj.secondLastName,
             personalID: obj.personalID,
             password: obj.password,
             email: obj.email,
-            phone: obj.phone,
+            phoneNumber: obj.phoneNumber,
             lat: obj.lat,
             lng: obj.lng,
             rolID: obj.rolID
