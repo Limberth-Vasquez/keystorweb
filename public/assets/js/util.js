@@ -239,7 +239,7 @@ $(document).ready(function () {
                         <label>Users</label>
                     </li> 
                     <li data-username="User" class="nav-item">
-                        <a href="User.html" class="nav-link">
+                        <a href="user.html" class="nav-link">
                             <span class="pcoded-micon">
                                 <i class="feather icon-user"></i>
                             </span>
